@@ -1,0 +1,177 @@
+{
+  "artifact_id": "operational-clarity-deep-mock-v0",
+  "feature_name": "Operational Clarity Deep Mock Deck",
+  "artifact_type": "screen",
+  "status": "draft",
+  "owner": "wip-presentation",
+  "linked_specs": [
+    "/Users/corphr.software/Documents/skills/wip-presentation/models/presentation-style-systems-v0.json",
+    "/Users/corphr.software/Documents/skills/wip-presentation/models/style-system-mock-decks-v0.json",
+    "/Users/corphr.software/Documents/skills/wip-presentation/product/PRESENTATION-STYLE-SYSTEMS.md",
+    "/Users/corphr.software/Documents/skills/wip-presentation/templates/SLIDE-CONTRACT-TEMPLATE.md"
+  ],
+  "user_goal": "Review whether Operational Clarity can carry a full internal leadership decision deck with enough modern polish and strong proof structure.",
+  "primary_risk": "The style may feel either too safe and old, or too visual and under-structured for a formal leadership review.",
+  "scenario": {
+    "name": "AI Workflow Leadership Decision Deck",
+    "communication_job": "Get approval to narrow launch scope to one AI workflow for the next quarter.",
+    "audience": "Senior product and GTM leadership",
+    "organization_posture": "Formal, proof-heavy, cross-functional",
+    "deck_archetype": "Executive Decision Deck",
+    "thesis": "We should narrow the launch to one workflow because it increases proof density, reduces execution risk, and gives GTM a clearer story.",
+    "time_limit": "15 minutes live, skim-readable async follow-up",
+    "slide_roles": [
+      "opener",
+      "context",
+      "proof",
+      "comparison",
+      "recommendation",
+      "appendix-evidence"
+    ]
+  },
+  "screens": [
+    {
+      "screen_id": "oc-01-opener",
+      "screen_type": "slide_mock",
+      "role": "opener",
+      "title": "Narrowing the launch to one workflow is the fastest path to proof and lower execution risk.",
+      "layout": "title block, executive summary table, decision callout",
+      "speaker_note_posture": "State the decision in the first 20 seconds, then explain why breadth is riskier than it looks.",
+      "content_blocks": [
+        "action title",
+        "leadership summary table",
+        "decision callout strip"
+      ],
+      "sample_data": {
+        "summary_rows": [
+          ["Decision", "Launch workflow one only"],
+          ["Why now", "Need clean proof before scale"],
+          ["Main risk", "Breadth delayed by one quarter"]
+        ]
+      }
+    },
+    {
+      "screen_id": "oc-02-context",
+      "screen_type": "slide_mock",
+      "role": "context",
+      "title": "The current broad launch plan asks product, GTM, and enablement to absorb too much ambiguity at once.",
+      "layout": "left narrative frame, right operating-friction stack",
+      "speaker_note_posture": "Frame this as coordination cost, not just product scope preference.",
+      "content_blocks": [
+        "short narrative lead",
+        "three operating-friction cards",
+        "bottom implication band"
+      ],
+      "sample_data": {
+        "frictions": [
+          ["Product", "Evidence diluted across workflows"],
+          ["GTM", "Story too broad to land cleanly"],
+          ["Enablement", "Readiness split across too many paths"]
+        ]
+      }
+    },
+    {
+      "screen_id": "oc-03-proof",
+      "screen_type": "slide_mock",
+      "role": "proof",
+      "title": "A focused launch beats a broad release on activation, readiness, and sales clarity.",
+      "layout": "clustered chart, option table, takeaway strip",
+      "speaker_note_posture": "Walk left to right through the chart, then land on the operating implication instead of re-reading numbers.",
+      "content_blocks": [
+        "three-metric clustered chart",
+        "option table",
+        "takeaway strip"
+      ],
+      "sample_data": {
+        "metrics": [
+          { "name": "Activation", "focused": 74, "broad": 48 },
+          { "name": "Readiness", "focused": 82, "broad": 55 },
+          { "name": "Sales Clarity", "focused": 69, "broad": 41 }
+        ],
+        "options": [
+          ["Narrow launch", "High", "Low"],
+          ["Broad launch", "Medium", "High"]
+        ]
+      }
+    },
+    {
+      "screen_id": "oc-04-comparison",
+      "screen_type": "slide_mock",
+      "role": "comparison",
+      "title": "The real choice is speed of proof versus breadth of promise.",
+      "layout": "two-column comparison with four decision rows",
+      "speaker_note_posture": "Use this to force the tradeoff into the room. Do not let the discussion stay at the level of vague ambition.",
+      "content_blocks": [
+        "focused path column",
+        "broad path column",
+        "decision-criteria rows"
+      ],
+      "sample_data": {
+        "rows": [
+          ["Proof speed", "Fast", "Slow"],
+          ["Execution risk", "Lower", "Higher"],
+          ["GTM clarity", "Sharper", "Blurrier"],
+          ["Perceived ambition", "Narrower now", "Broader now"]
+        ]
+      }
+    },
+    {
+      "screen_id": "oc-05-recommendation",
+      "screen_type": "slide_mock",
+      "role": "recommendation",
+      "title": "Approve workflow one now, then unlock expansion only after the first proof cycle is complete.",
+      "layout": "recommendation box, risk/mitigation panel, milestone row",
+      "speaker_note_posture": "End on the decision, the risk, and the exact trigger for expansion so the deck feels actionable.",
+      "content_blocks": [
+        "recommendation statement",
+        "risk and mitigation panel",
+        "milestone row"
+      ],
+      "sample_data": {
+        "milestones": [
+          ["Approve", "This week"],
+          ["Pilot", "Q1"],
+          ["Measure", "30-45 days"],
+          ["Expand", "After proof threshold"]
+        ],
+        "risk": "Stakeholders may interpret narrower scope as lower ambition.",
+        "mitigation": "Pre-commit the expansion trigger and show the second workflow path in appendix."
+      }
+    },
+    {
+      "screen_id": "oc-06-appendix",
+      "screen_type": "slide_mock",
+      "role": "appendix-evidence",
+      "title": "Appendix: proof assumptions, launch trigger, and workflow-two expansion path.",
+      "layout": "three appendix panels with smaller evidence blocks",
+      "speaker_note_posture": "Only pull this up when challenged on assumptions or on what happens after workflow one succeeds.",
+      "content_blocks": [
+        "assumptions panel",
+        "expansion trigger panel",
+        "workflow-two path panel"
+      ],
+      "sample_data": {
+        "assumptions": [
+          "Activation target > 70",
+          "Sales clarity score > 65",
+          "Enablement readiness achieved before scale"
+        ],
+        "trigger": "Expand only after two consecutive proof checkpoints are met.",
+        "workflow_two": "Prepared but not activated in the main story."
+      }
+    }
+  ],
+  "states": [
+    "opener",
+    "context",
+    "proof",
+    "comparison",
+    "recommendation",
+    "appendix"
+  ],
+  "open_questions": [
+    "Does this style need a bit more premium visual contrast for high-stakes internal decks?",
+    "Should the comparison slide be more table-like or more narrative?",
+    "Is the appendix posture disciplined enough to keep the main deck clean?"
+  ]
+}

@@ -1,0 +1,231 @@
+{
+  "artifact_id": "style-system-mock-decks-v0",
+  "feature_name": "Presentation Style System Mock Decks",
+  "artifact_type": "screen",
+  "status": "draft",
+  "owner": "wip-presentation",
+  "linked_specs": [
+    "/Users/corphr.software/Documents/skills/wip-presentation/models/presentation-style-systems-v0.json",
+    "/Users/corphr.software/Documents/skills/wip-presentation/product/PRESENTATION-STYLE-SYSTEMS.md",
+    "/Users/corphr.software/Documents/skills/wip-presentation/workstreams/design-process.md"
+  ],
+  "user_goal": "Compare how the same deck scenario changes under different presentation style systems before choosing a direction.",
+  "primary_risk": "Style selection stays abstract and mood-board level instead of becoming something concrete enough to critique.",
+  "scenario": {
+    "name": "AI Workflow Leadership Pitch",
+    "communication_job": "Get internal leadership approval to narrow launch scope to one AI workflow.",
+    "audience": "Senior product and GTM leadership",
+    "organization_posture": "Can vary by style system",
+    "deck_archetype": "Executive Decision Deck",
+    "thesis": "We should narrow the launch to one workflow because proof density and adoption speed will be stronger than a broad release.",
+    "slides": [
+      {
+        "slide_id": "s1",
+        "role": "opener",
+        "title": "We should narrow the launch to one workflow to increase proof density and adoption speed.",
+        "support": "A focused launch gives us cleaner user evidence, a faster GTM story, and lower execution risk in the first 90 days.",
+        "visual_intent": "hero opener with thesis and framing proof"
+      },
+      {
+        "slide_id": "s2",
+        "role": "proof",
+        "title": "One workflow outperforms a broad launch across activation, readiness, and sales clarity.",
+        "support": "Compare focused launch versus broad release across three operational metrics.",
+        "visual_intent": "chart-led proof slide"
+      },
+      {
+        "slide_id": "s3",
+        "role": "recommendation",
+        "title": "Approve the narrow launch now, then expand after proof and repeatability are established.",
+        "support": "Show decision, rationale, risk, and next-step structure clearly.",
+        "visual_intent": "recommendation and plan slide"
+      }
+    ]
+  },
+  "screens": [
+    {
+      "screen_id": "editorial-signal-deck",
+      "screen_type": "style_deck_mock",
+      "style_system_id": "editorial-signal",
+      "style_system_name": "Editorial Signal",
+      "style_summary": "Typography-first, asymmetrical, clean, and product-forward.",
+      "organization_posture_variant": "modern product leadership",
+      "slides": [
+        {
+          "slide_id": "s1",
+          "role": "opener",
+          "layout": "large flush-left title with a narrow right-side framing column",
+          "content_blocks": [
+            "oversized action title",
+            "short supporting paragraph",
+            "two proof signals in small stat labels",
+            "thin editorial divider"
+          ],
+          "sample_data": {
+            "signals": [
+              "90-day proof window",
+              "2x clearer GTM story"
+            ]
+          }
+        },
+        {
+          "slide_id": "s2",
+          "role": "proof",
+          "layout": "large chart area with takeaway caption and small side note",
+          "content_blocks": [
+            "bar chart with three metrics",
+            "single takeaway caption",
+            "small footnote with evidence source"
+          ],
+          "sample_data": {
+            "metrics": [
+              { "name": "Activation", "focused": 74, "broad": 48 },
+              { "name": "Readiness", "focused": 82, "broad": 55 },
+              { "name": "Sales Clarity", "focused": 69, "broad": 41 }
+            ]
+          }
+        },
+        {
+          "slide_id": "s3",
+          "role": "recommendation",
+          "layout": "left recommendation block with right-side phased rollout plan",
+          "content_blocks": [
+            "decision statement",
+            "three rationale bullets",
+            "timeline strip for next steps"
+          ],
+          "sample_data": {
+            "steps": ["Approve scope", "Ship workflow one", "Expand after proof"]
+          }
+        }
+      ]
+    },
+    {
+      "screen_id": "operational-clarity-deck",
+      "screen_type": "style_deck_mock",
+      "style_system_id": "operational-clarity",
+      "style_system_name": "Operational Clarity",
+      "style_summary": "Proof-first, data-clean, enterprise-safe, and still modern.",
+      "organization_posture_variant": "formal cross-functional leadership review",
+      "slides": [
+        {
+          "slide_id": "s1",
+          "role": "opener",
+          "layout": "clear title block with structured summary table and decision callout",
+          "content_blocks": [
+            "assertive action title",
+            "decision summary panel",
+            "three-row leadership summary table"
+          ],
+          "sample_data": {
+            "summary_rows": [
+              ["Decision", "Narrow to workflow one"],
+              ["Why now", "Need cleaner proof before scale"],
+              ["Main risk", "Delaying breadth by one quarter"]
+            ]
+          }
+        },
+        {
+          "slide_id": "s2",
+          "role": "proof",
+          "layout": "comparison chart plus structured option table",
+          "content_blocks": [
+            "clustered bars",
+            "option table with impact and risk",
+            "bottom takeaway strip"
+          ],
+          "sample_data": {
+            "metrics": [
+              { "name": "Activation", "focused": 74, "broad": 48 },
+              { "name": "Readiness", "focused": 82, "broad": 55 },
+              { "name": "Sales Clarity", "focused": 69, "broad": 41 }
+            ],
+            "options": [
+              ["Narrow launch", "High", "Low"],
+              ["Broad launch", "Medium", "High"]
+            ]
+          }
+        },
+        {
+          "slide_id": "s3",
+          "role": "recommendation",
+          "layout": "recommendation box, risk box, and operating milestones",
+          "content_blocks": [
+            "decision statement",
+            "risk and mitigation list",
+            "milestone schedule"
+          ],
+          "sample_data": {
+            "milestones": ["Approve", "Pilot", "Measure", "Expand"]
+          }
+        }
+      ]
+    },
+    {
+      "screen_id": "premium-narrative-deck",
+      "screen_type": "style_deck_mock",
+      "style_system_id": "premium-narrative",
+      "style_system_name": "Premium Narrative",
+      "style_summary": "Restrained premium drama with real narrative pacing.",
+      "organization_posture_variant": "high-visibility strategic story",
+      "slides": [
+        {
+          "slide_id": "s1",
+          "role": "opener",
+          "layout": "dark hero slide with large thesis, short subcopy, and one glowing signal strip",
+          "content_blocks": [
+            "hero title",
+            "minimal supporting line",
+            "two premium signal cards"
+          ],
+          "sample_data": {
+            "signals": [
+              "Cleaner proof in 90 days",
+              "Lower launch complexity"
+            ]
+          }
+        },
+        {
+          "slide_id": "s2",
+          "role": "proof",
+          "layout": "single-message chart with high-contrast bars and a dramatic caption band",
+          "content_blocks": [
+            "hero metric chart",
+            "large caption",
+            "small support note"
+          ],
+          "sample_data": {
+            "metrics": [
+              { "name": "Activation", "focused": 74, "broad": 48 },
+              { "name": "Readiness", "focused": 82, "broad": 55 },
+              { "name": "Sales Clarity", "focused": 69, "broad": 41 }
+            ]
+          }
+        },
+        {
+          "slide_id": "s3",
+          "role": "recommendation",
+          "layout": "large recommendation statement with three elegant next-step blocks",
+          "content_blocks": [
+            "decision headline",
+            "three next-step pillars",
+            "closing confidence line"
+          ],
+          "sample_data": {
+            "steps": ["Approve narrow scope", "Prove value fast", "Expand with evidence"]
+          }
+        }
+      ]
+    }
+  ],
+  "states": [
+    "editorial-signal",
+    "operational-clarity",
+    "premium-narrative"
+  ],
+  "open_questions": [
+    "Should one more style system be added for enterprise-premium middle ground?",
+    "How much visual contrast should be allowed between opener and proof slides in each system?",
+    "Which of these directions best survives real PPTX authoring without heavy manual cleanup?"
+  ]
+}

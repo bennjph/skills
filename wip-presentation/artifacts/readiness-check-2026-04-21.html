@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WIP Presentation Readiness Check</title>
+  <style>
+    :root {
+      --bg: #f6f1e8;
+      --panel: #fffaf2;
+      --ink: #1f1a14;
+      --muted: #6f6559;
+      --border: #d8cbb8;
+      --strong: #165d3d;
+      --strong-bg: #e7f5ed;
+      --partial: #8a5a12;
+      --partial-bg: #fff2db;
+      --open: #8c2f39;
+      --open-bg: #fdecee;
+      --accent: #2d5b87;
+      --shadow: 0 10px 30px rgba(31, 26, 20, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+      background:
+        radial-gradient(circle at top right, rgba(45, 91, 135, 0.08), transparent 28%),
+        linear-gradient(180deg, #f8f3eb 0%, var(--bg) 100%);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 48px));
+      margin: 40px auto 64px;
+    }
+
+    .hero,
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 12px 0;
+      line-height: 1.15;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      font-size: 1.45rem;
+      margin-bottom: 16px;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin: 0 0 14px 0;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .summary-grid,
+    .theme-grid,
+    .gap-grid,
+    .source-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .summary-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 24px;
+    }
+
+    .metric {
+      padding: 18px 18px 16px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .metric .value {
+      display: block;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .metric .label {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .panel {
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .legend {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .chip,
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      border: 1px solid transparent;
+    }
+
+    .strong {
+      color: var(--strong);
+      background: var(--strong-bg);
+      border-color: rgba(22, 93, 61, 0.18);
+    }
+
+    .partial {
+      color: var(--partial);
+      background: var(--partial-bg);
+      border-color: rgba(138, 90, 18, 0.18);
+    }
+
+    .open {
+      color: var(--open);
+      background: var(--open-bg);
+      border-color: rgba(140, 47, 57, 0.18);
+    }
+
+    .theme-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .theme-card {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.76);
+    }
+
+    .theme-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .theme-card p:last-child,
+    .theme-card ul:last-child {
+      margin-bottom: 0;
+    }
+
+    .theme-card ul,
+    .gap-card ul {
+      margin: 10px 0 0 18px;
+      padding: 0;
+    }
+
+    .theme-card li,
+    .gap-card li {
+      margin-bottom: 8px;
+    }
+
+    .gap-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .gap-card {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.76);
+    }
+
+    .source-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .small {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .callout {
+      border-left: 4px solid var(--accent);
+      padding: 14px 16px;
+      background: rgba(45, 91, 135, 0.06);
+      border-radius: 12px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 980px) {
+      .summary-grid,
+      .theme-grid,
+      .gap-grid,
+      .source-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .page {
+        width: min(100% - 24px, 1180px);
+        margin-top: 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <p class="meta">Readiness review for <strong>wip-presentation</strong> · 2026-04-21 · scope: repo truth, operating doctrine, and production-skill readiness</p>
+      <h1>Presentation Capability System Readiness Check</h1>
+      <p>
+        This review checks how ready the repo is across the main verticals already present in the workspace:
+        narrative, writing, design, prototype-first workflow, PPTX mechanics, vocabulary, evaluation,
+        operating model, and skill-incubation doctrine.
+      </p>
+      <p>
+        The goal is not to say whether the final skill is ready to ship today. The goal is to show where
+        the repo is already strong, where it is only directionally defined, and where exact schemas or catalogs
+        are still missing.
+      </p>
+
+      <div class="summary-grid">
+        <div class="metric">
+          <span class="value">14</span>
+          <span class="label">themes reviewed</span>
+        </div>
+        <div class="metric">
+          <span class="value">8</span>
+          <span class="label">strongly defined</span>
+        </div>
+        <div class="metric">
+          <span class="value">6</span>
+          <span class="label">partially defined</span>
+        </div>
+        <div class="metric">
+          <span class="value">0</span>
+          <span class="label">fully unowned themes</span>
+        </div>
+      </div>
+
+      <div class="legend">
+        <span class="chip strong">Strongly Defined</span>
+        <span class="chip partial">Partially Defined</span>
+        <span class="chip open">Still Open</span>
+      </div>
+
+      <div class="callout">
+        <strong>Overall verdict:</strong> the repo is already strong on system shape, workflow logic,
+        vocabulary, prototype-first direction, update logic, and evaluation framing. The main remaining work is
+        not “what is this system?” anymore. It is exact schema work, catalog completion, and implementation of
+        the repo operating layer such as <code>AGENTS.md</code> and session files.
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Theme Readiness</h2>
+      <div class="theme-grid">
+        <article class="theme-card">
+          <div class="theme-top">
+            <h3>1. Repo Boundary And System Shape</h3>
+            <span class="status strong">Strongly Defined</span>
+          </div>
+          <p>One presentation capability system, not multiple products. Human-in-the-loop by default. Final production skill is downstream from this repo, not the source of truth.</p>
+          <ul>
+            <li>Well established in <a href="file:///Users/corphr.software/Documents/skills/wip-presentation/README.md">README.md</a>, <a href="file:///Users/corphr.software/Documents/skills/wip-presentation/CONTEXT.md">CONTEXT.md</a>, and <a href="file:///Users/corphr.software/Documents/skills/wip-presentation/UBIQUITOUS_LANGUAGE.md">UBIQUITOUS_LANGUAGE.md</a>.</li>
+            <li>Boundary with shared skills and machine-local config is also consistent with <a href="file:///Users/corphr.software/Documents/my-systems/scenario-brownfield.md">my-systems brownfield guidance</a>.</li>
+          </ul>
+        </article>
+
+        <article class="theme-card">
+          <div class="theme-top">
+            <h3>2. Work Phases And Human Collaboration Flow</h3>
+            <span class="status strong">Strongly Defined</span>
+          </div>
+          <p>The repo has a stable six-phase operating flow: Briefing, Deck Archetype Comparison, Narrative Shaping, Prototyping, Authoring, Verification.</p>
+          <ul>
+            <li><code>Deck Rehydration</code> is clearly treated as part of Briefing for existing decks.</li>
+            <li>The system must collaborate with the human on the communication job, audience, thesis, evidence, slide plan, and contracts before PPTX authoring.</li>
+          </ul>
+        </article>
+
+        <article class="theme-card">
+          <div class="theme-top">
+            <h3>3. Narrative Architecture</h3>
+            <span class="status strong">Strongly Defined</span>
+          </div>
+          <p>Narrative is the strongest and most mature vertical in the repo. Decision framing, controlling idea, slide-role logic, skim-mode testing, and appendix discipline are all clearly stated.</p>
+          <ul>
+            <li>Primary sources: <a href="file:///Users/corphr.software/Documents/skills/wip-presentation/workstreams/narrative-architecture.md">narrative-architecture.md</a> and <a href="file:///Users/corphr.software/Documents/skills/wip-presentation/reviews/01-narrative-review.md">01-narrative-review.md</a>.</li>
+            <li>The repo also already separates prompt-solvable narrative problems from deeper capability gaps.</li>
+          </ul>
+        </article>
+
+        <article class="theme-card">
+          <div class="theme-top">
+            <h3>4. Writing And Message Compression</h3>
+            <span class="status strong">Strongly Defined</span>
+          </div>
+          <p>Writing doctrine is clear and directly usable: point-first copy, action titles, low reader effort, strong note posture, and anti-filler rules.</p>
+          <ul>
+            <li>Primary source: <a href="file:///Users/corphr.software/Documents/skills/wip-presentation/workstreams/writing-style-guidelines.md">writing-style-guidelines.md</a>.</li>
+            <li>Ready to inherit strongly into the repo’s future <code>AGENTS.md</code>.</li>
+          </ul>
+        </article>
+
+        <article class="theme-card">
+          <div class="theme-top">
+            <h3>5. Design Process And Taste</h3>
+            <span class="status partial">Partially Defined</span>
+          </div>
+          <p>The repo has strong taste rules and anti-slop guidance, but the actual reusable style asset model is not fully specified yet.</p>
+          <ul>
+            <li>Strong on design intent in <a href="file:///Users/corphr.software/Documents/skills/wip-presentation/workstreams/design-process.md">design-process.md</a>.</li>
+            <li>Still partial on exact <code>Style System</code> package shape, style metadata, and the first real contents of the <code>Style Pool</code>.</li>
+          </ul>
+        </article>
+
+        <article class="theme-card">
+          <div class="theme-top">
+            <h3>6. Prototype-First Workflow</h3>
+            <span class="status strong">Strongly Defined</span>
+          </div>
+          <p>The repo is very clear that deck work should go through structured prototypes before PPTX. JSON and visual artifacts are upstream truth, not optional extras.</p>
+          <ul>
+            <li>Primary sources: <a href="file:///Users/corphr.software/Documents/skills/wip-presentation/workstreams/prototype-json-pipeline.md">prototype-json-pipeline.md</a> and <a href="file:///Users/corphr.software/Documents/skills/wip-presentation/product/PRESENTATION-OPERATING-STACK.md">PRESENTATION-OPERATING-STACK.md</a>.</li>
+            <li><code>Prototype Tree</code> is now a stable concept for branch-first visual comparison.</li>
+          </ul>
+        </article>
+
+        <article class="theme-card">
+          <div class="theme-top">
+            <h3>7. PPTX CRUD And Deck Engineering</h3>
+            <span class="status partial">Partially Defined</span>
+          </div>
+          <p>The conceptual CRUD model is strong, including editability, OOXML escalation, and update-safe verification. What is missing is real implementation and runtime proof.</p>
+          <ul>
+            <li>Primary source: <a href="file:///Users/corphr.software/Documents/skills/wip-presentation/workstreams/technical-crud-pptx.md">technical-crud-pptx.md</a>.</li>
+            <li>Good doctrine exists, but no implemented authoring/update engine is present in the repo yet.</li>
+          </ul>
+        </article>
+
+        <article class="theme-card">
+          <div class="theme-top">
+            <h3>8. Existing Deck Adaptation And Rehydration</h3>
+            <span class="status strong">Strongly Defined</span>
+          </div>
+          <p>The repo is unusually strong here. Existing deck updates are first-class, and blind patching is explicitly rejected.</p>
+          <ul>
+            <li><code>Existing Deck Adaptation</code> and <code>Deck Rehydration</code> are canon terms with a defined minimum <code>Rehydration Package</code>.</li>
+            <li>This is ready as operating doctrine even if tooling is not yet built.</li>
+          </ul>
+        </article>
+
+        <article class="theme-card">
+          <div class="theme-top">
+            <h3>9. Deck Archetype Model</h3>
+            <span class="status partial">Partially Defined</span>
+          </div>
+          <p>The repo has a strong archetype concept and decision rule, plus a starter catalog. The open part is completeness and exact catalog design.</p>
+          <ul>
+            <li>Starter archetypes exist in <a href="file:///Users/corphr.software/Documents/skills/wip-presentation/product/PRESENTATION-VOCABULARY-PACKAGE.md">PRESENTATION-VOCABULARY-PACKAGE.md</a>.</li>
+            <li>Still open: whether the current set is sufficient and what missing archetypes must be added during incubation.</li>
+          </ul>
+        </article>
+
+        <article class="theme-card">
+          <div class="theme-top">
+            <h3>10. Style System, Style Pool, Style Variant</h3>
+            <span class="status partial">Partially Defined</span>
+          </div>
+          <p>The logic is solid: shared style pool, select one system, create a light variant. The asset shape is still incomplete.</p>
+          <ul>
+            <li>Strong rule clarity in <a href="file:///Users/corphr.software/Documents/skills/wip-presentation/CONTEXT.md">CONTEXT.md</a> and <a href="file:///Users/corphr.software/Documents/skills/wip-presentation/UBIQUITOUS_LANGUAGE.md">UBIQUITOUS_LANGUAGE.md</a>.</li>
+            <li>Still missing: exact metadata for <code>Style Fit Tags</code>, file/package schema, and first v1 style library.</li>
+          </ul>
+        </article>
+
+        <article class="theme-card">
+          <div class="theme-top">
+            <h3>11. Presenter Voice System</h3>
+            <span class="status partial">Partially Defined</span>
+          </div>
+          <p><code>Presenter Voice</code>, <code>Voice Profile</code>, and <code>Voice Variant</code> are named and placed correctly. The exact asset schema is still open.</p>
+          <ul>
+            <li>The logic is stable: narrative first, then voice tuning.</li>
+            <li>Still missing: what a voice profile file contains and how voice should modify titles versus body copy versus speaker notes in an exact way.</li>
+          </ul>
+        </article>
+
+        <article class="theme-card">
+          <div class="theme-top">
+            <h3>12. Slide Role And Slide Contract Model</h3>
+            <span class="status partial">Partially Defined</span>
+          </div>
+          <p>The repo has a clear direction: small closed slide-role vocabulary, global contracts by role, variants by archetype. The exact final role list is still not frozen.</p>
+          <ul>
+            <li>Good support from <a href="file:///Users/corphr.software/Documents/skills/wip-presentation/templates/SLIDE-CONTRACT-TEMPLATE.md">SLIDE-CONTRACT-TEMPLATE.md</a> and the vocabulary package.</li>
+            <li>Still open: final role inventory and some fuzzy boundaries between insight, proof, recommendation, and comparison.</li>
+          </ul>
+        </article>
+
+        <article class="theme-card">
+          <div class="theme-top">
+            <h3>13. Evaluation, Verification, And Failure Diagnosis</h3>
+            <span class="status strong">Strongly Defined</span>
+          </div>
+          <p>This is one of the most complete product surfaces in the repo. Quality rubric, hard fail gates, validation order, and failure-mode diagnosis already exist.</p>
+          <ul>
+            <li>Primary source: <a href="file:///Users/corphr.software/Documents/skills/wip-presentation/product/PRESENTATION-EVALUATION-SYSTEM.md">PRESENTATION-EVALUATION-SYSTEM.md</a>.</li>
+            <li>Ready as doctrine. What remains is implementation of proof workflows and verify artifacts.</li>
+          </ul>
+        </article>
+
+        <article class="theme-card">
+          <div class="theme-top">
+            <h3>14. Repo Operating Model And AGENTS Doctrine</h3>
+            <span class="status partial">Partially Defined</span>
+          </div>
+          <p>The doctrine is now well defined in canon, but not yet instantiated as files. This is the clearest “defined but not built” area.</p>
+          <ul>
+            <li>Strong decisions already exist for <code>AGENTS.md</code>, <code>work/current.md</code>, <code>sessions/context.md</code>, session chains, and doctrine split.</li>
+            <li>Still missing: the actual files themselves and the exact templates for the session surfaces.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Biggest Gaps To Close</h2>
+      <div class="gap-grid">
+        <article class="gap-card">
+          <h3>Before The Repo Feels Operationally Complete</h3>
+          <ul>
+            <li>Create <code>AGENTS.md</code> from the stabilized doctrine.</li>
+            <li>Create <code>work/current.md</code>, <code>sessions/context.md</code>, and one dated session chain.</li>
+            <li>Write the short setup rationale so future agents understand why this repo uses the scaled model.</li>
+          </ul>
+        </article>
+
+        <article class="gap-card">
+          <h3>Before The Production Skill Is Actually Ready</h3>
+          <ul>
+            <li>Freeze the exact <code>Slide Role</code> list.</li>
+            <li>Define the real schemas for <code>Style System</code> and <code>Voice Profile</code>.</li>
+            <li>Decide whether the archetype catalog is complete enough.</li>
+            <li>Convert the readiness doctrine into a true production-skill gate.</li>
+          </ul>
+        </article>
+
+        <article class="gap-card">
+          <h3>Before Tooling Can Be Trusted</h3>
+          <ul>
+            <li>Build or prove the PPTX runtime path.</li>
+            <li>Create actual verification outputs, not only the evaluation doctrine.</li>
+            <li>Run experiments that validate style, voice, and update workflows against real deck cases.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Production Skill Readiness Call</h2>
+      <p>
+        <span class="chip partial">Not Ready Yet</span>
+      </p>
+      <p>
+        By the repo’s own rule, a production <code>SKILL.md</code> should wait until the key operating decisions are stable enough for reuse.
+        The repo has now done a large share of that conceptual work, but a few readiness criteria are still only partial:
+      </p>
+      <ul>
+        <li><strong>Strong enough already:</strong> domain language, work phases, human collaboration flow, deck rehydration, evaluation logic, prototype-first approach.</li>
+        <li><strong>Still partial:</strong> archetype catalog completeness, style asset model, voice asset model, exact slide-role inventory, actual operating files, and executable proof.</li>
+      </ul>
+      <div class="callout">
+        <strong>Simple reading:</strong> the repo is ready to draft its operating layer now, but not yet ready to collapse into a fully authoritative production skill package.
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Evidence Base</h2>
+      <div class="source-grid">
+        <div>
+          <h3>Primary Repo Sources</h3>
+          <ul>
+            <li><a href="file:///Users/corphr.software/Documents/skills/wip-presentation/README.md">README.md</a></li>
+            <li><a href="file:///Users/corphr.software/Documents/skills/wip-presentation/CONTEXT.md">CONTEXT.md</a></li>
+            <li><a href="file:///Users/corphr.software/Documents/skills/wip-presentation/UBIQUITOUS_LANGUAGE.md">UBIQUITOUS_LANGUAGE.md</a></li>
+            <li><a href="file:///Users/corphr.software/Documents/skills/wip-presentation/repo-map.md">repo-map.md</a></li>
+            <li><a href="file:///Users/corphr.software/Documents/skills/wip-presentation/SEQUENCE.md">SEQUENCE.md</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Workstream And Product Sources</h3>
+          <ul>
+            <li><a href="file:///Users/corphr.software/Documents/skills/wip-presentation/workstreams/narrative-architecture.md">narrative-architecture.md</a></li>
+            <li><a href="file:///Users/corphr.software/Documents/skills/wip-presentation/workstreams/writing-style-guidelines.md">writing-style-guidelines.md</a></li>
+            <li><a href="file:///Users/corphr.software/Documents/skills/wip-presentation/workstreams/design-process.md">design-process.md</a></li>
+            <li><a href="file:///Users/corphr.software/Documents/skills/wip-presentation/workstreams/prototype-json-pipeline.md">prototype-json-pipeline.md</a></li>
+            <li><a href="file:///Users/corphr.software/Documents/skills/wip-presentation/workstreams/technical-crud-pptx.md">technical-crud-pptx.md</a></li>
+            <li><a href="file:///Users/corphr.software/Documents/skills/wip-presentation/product/PRESENTATION-OPERATING-STACK.md">PRESENTATION-OPERATING-STACK.md</a></li>
+            <li><a href="file:///Users/corphr.software/Documents/skills/wip-presentation/product/PRESENTATION-EVALUATION-SYSTEM.md">PRESENTATION-EVALUATION-SYSTEM.md</a></li>
+            <li><a href="file:///Users/corphr.software/Documents/skills/wip-presentation/product/PRESENTATION-VOCABULARY-PACKAGE.md">PRESENTATION-VOCABULARY-PACKAGE.md</a></li>
+            <li><a href="file:///Users/corphr.software/Documents/skills/wip-presentation/templates/DECK-BRIEF-TEMPLATE.md">DECK-BRIEF-TEMPLATE.md</a></li>
+            <li><a href="file:///Users/corphr.software/Documents/skills/wip-presentation/templates/SLIDE-CONTRACT-TEMPLATE.md">SLIDE-CONTRACT-TEMPLATE.md</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="small">
+        Review method: this page is based on repo inspection and canon decisions already recorded in the living docs.
+        It is a source-grounded readiness read, not a benchmark against external products.
+      </p>
+    </section>
+  </main>
+</body>
+</html>

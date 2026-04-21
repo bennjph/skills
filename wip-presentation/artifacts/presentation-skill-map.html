@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WIP Presentation Skill Map</title>
+    <style>
+      :root {
+        --bg: #f4efe7;
+        --panel: rgba(255, 251, 247, 0.9);
+        --ink: #15221a;
+        --muted: #5f675f;
+        --line: #d7c8b4;
+        --accent: #c45d2d;
+        --accent-2: #2f6b5f;
+        --accent-3: #d3a537;
+        --shadow: 0 18px 50px rgba(40, 26, 12, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at top left, rgba(196, 93, 45, 0.12), transparent 28%),
+          radial-gradient(circle at top right, rgba(47, 107, 95, 0.12), transparent 32%),
+          linear-gradient(180deg, #fbf7f1 0%, var(--bg) 100%);
+      }
+
+      .page {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 40px 24px 64px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.35fr 0.95fr;
+        gap: 24px;
+        margin-bottom: 24px;
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid rgba(215, 200, 180, 0.9);
+        border-radius: 24px;
+        padding: 24px;
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(6px);
+      }
+
+      .eyebrow {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin: 0 0 12px;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        font-weight: 600;
+        line-height: 1.02;
+      }
+
+      h1 {
+        font-size: clamp(42px, 7vw, 78px);
+        max-width: 12ch;
+      }
+
+      h2 {
+        font-size: 28px;
+        margin-bottom: 16px;
+      }
+
+      h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      p {
+        margin: 0;
+        line-height: 1.5;
+        font-size: 16px;
+        color: var(--muted);
+      }
+
+      .hero-copy {
+        display: grid;
+        gap: 20px;
+      }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+
+      .stat {
+        border-radius: 18px;
+        padding: 16px;
+        background: rgba(255, 255, 255, 0.55);
+        border: 1px solid rgba(215, 200, 180, 0.85);
+      }
+
+      .stat strong {
+        display: block;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 28px;
+        color: var(--ink);
+      }
+
+      .stat span {
+        display: block;
+        margin-top: 6px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+      }
+
+      .pill-list,
+      .card-grid,
+      .flow-grid,
+      .phase-grid {
+        display: grid;
+        gap: 14px;
+      }
+
+      .pill-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .pill {
+        padding: 14px 16px;
+        border-radius: 999px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 13px;
+        color: var(--ink);
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(215, 200, 180, 0.9);
+      }
+
+      .section {
+        margin-top: 24px;
+      }
+
+      .card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .card,
+      .flow-card,
+      .phase-card {
+        border-radius: 20px;
+        padding: 18px;
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid rgba(215, 200, 180, 0.88);
+      }
+
+      .card small,
+      .flow-card small,
+      .phase-card small {
+        display: inline-block;
+        margin-bottom: 8px;
+        font-family: Arial, Helvetica, sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 11px;
+        color: var(--accent-2);
+      }
+
+      .meta {
+        margin-top: 12px;
+        display: grid;
+        gap: 8px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .bands {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 24px;
+        margin-top: 24px;
+      }
+
+      .flow-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .flow-card {
+        position: relative;
+        min-height: 150px;
+      }
+
+      .flow-card::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: -18px;
+        width: 18px;
+        height: 1px;
+        background: var(--line);
+      }
+
+      .flow-card:nth-child(3)::after,
+      .flow-card:nth-child(6)::after,
+      .flow-card:last-child::after {
+        display: none;
+      }
+
+      .phase-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .accent-bar {
+        height: 10px;
+        width: 100%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--accent) 0%, var(--accent-3) 45%, var(--accent-2) 100%);
+        margin-top: 16px;
+      }
+
+      .footer-note {
+        margin-top: 24px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      @media (max-width: 900px) {
+        .hero,
+        .bands,
+        .card-grid,
+        .flow-grid,
+        .pill-list {
+          grid-template-columns: 1fr;
+        }
+
+        .flow-card::after {
+          display: none;
+        }
+
+        .hero-stats {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <div class="panel hero-copy">
+          <p class="eyebrow">WIP Presentation Skill</p>
+          <h1>Build decks like a narrative architect, not a box generator.</h1>
+          <p>
+            This map turns the current research into a working model for a presentation skill.
+            The emphasis is narrative quality first, then design discipline, then PPTX mechanics.
+          </p>
+          <div class="hero-stats">
+            <div class="stat">
+              <strong>5</strong>
+              <span>Workstreams</span>
+            </div>
+            <div class="stat">
+              <strong>4</strong>
+              <span>Professional use cases</span>
+            </div>
+            <div class="stat">
+              <strong>6</strong>
+              <span>Quality gates</span>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <p class="eyebrow">Anti-Slop Rules</p>
+          <div class="pill-list">
+            <div class="pill">Narrative before layout</div>
+            <div class="pill">Action titles carry the story</div>
+            <div class="pill">Prototype before PPTX</div>
+            <div class="pill">One slide, one job</div>
+            <div class="pill">Editable text and charts</div>
+            <div class="pill">No generic AI deck patterns</div>
+          </div>
+          <div class="accent-bar"></div>
+          <p class="footer-note">
+            Central thesis: the real failure mode is weak story logic, not merely weak styling.
+          </p>
+        </div>
+      </section>
+
+      <section class="section panel">
+        <p class="eyebrow">Professional Use Cases</p>
+        <h2>Different presentation jobs need different evidence and pacing.</h2>
+        <div class="card-grid">
+          <article class="card">
+            <small>Executive Update</small>
+            <h3>Decision support, not status theater.</h3>
+            <div class="meta">
+              <div>Audience: leadership team</div>
+              <div>Desired outcome: approve direction or remove a blocker</div>
+              <div>Failure mode: informative slides with no decision spine</div>
+            </div>
+          </article>
+          <article class="card">
+            <small>Technical Review</small>
+            <h3>Claims must survive expert scrutiny.</h3>
+            <div class="meta">
+              <div>Audience: engineers and technical leadership</div>
+              <div>Desired outcome: confidence in design and tradeoffs</div>
+              <div>Failure mode: story collapses when someone asks for proof</div>
+            </div>
+          </article>
+          <article class="card">
+            <small>Pitch Narrative</small>
+            <h3>Belief, urgency, and why-now have to land fast.</h3>
+            <div class="meta">
+              <div>Audience: investors or external decision-makers</div>
+              <div>Desired outcome: commitment to the next step</div>
+              <div>Failure mode: polished visuals without conviction</div>
+            </div>
+          </article>
+          <article class="card">
+            <small>Product Story</small>
+            <h3>User pain, sequencing, and tradeoffs must connect.</h3>
+            <div class="meta">
+              <div>Audience: cross-functional product partners</div>
+              <div>Desired outcome: align on priorities and roadmap logic</div>
+              <div>Failure mode: too many parallel stories dilute the thesis</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="bands">
+        <section class="panel">
+          <p class="eyebrow">Default Flow</p>
+          <h2>Prototype the argument before building the deck.</h2>
+          <div class="flow-grid">
+            <article class="flow-card">
+              <small>1. Discover</small>
+              <h3>Audience, purpose, stakes, decision</h3>
+              <p>The brief has to identify who must be moved and what must happen.</p>
+            </article>
+            <article class="flow-card">
+              <small>2. Narrative</small>
+              <h3>Message, titles, slide roles</h3>
+              <p>Shape the argument until the deck can be skimmed as a story.</p>
+            </article>
+            <article class="flow-card">
+              <small>3. JSON</small>
+              <h3>Structured prototype data</h3>
+              <p>Model the deck as a cheap planning surface before any PPTX work.</p>
+            </article>
+            <article class="flow-card">
+              <small>4. Artifact</small>
+              <h3>Inspectable visual map</h3>
+              <p>Render sequence, density, and relationships so flaws appear early.</p>
+            </article>
+            <article class="flow-card">
+              <small>5. Build</small>
+              <h3>Editable PPTX authoring</h3>
+              <p>Author or update the actual deck only after the story shape holds.</p>
+            </article>
+            <article class="flow-card">
+              <small>6. Verify</small>
+              <h3>Quality plus integrity</h3>
+              <p>Check visible fidelity, editable structure, and anti-slop gates.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel">
+          <p class="eyebrow">Job Phases</p>
+          <h2>The skill should move through disciplined phases.</h2>
+          <div class="phase-grid">
+            <article class="phase-card">
+              <small>Briefing</small>
+              <h3>Clarify the ask.</h3>
+              <p>Purpose, audience, presenter, and time constraint are explicit.</p>
+            </article>
+            <article class="phase-card">
+              <small>Structuring</small>
+              <h3>Lock the deck logic.</h3>
+              <p>Control the narrative spine before exploring visual treatments.</p>
+            </article>
+            <article class="phase-card">
+              <small>Prototyping</small>
+              <h3>Review the shape cheaply.</h3>
+              <p>Use JSON and an inspectable artifact to stress the structure.</p>
+            </article>
+            <article class="phase-card">
+              <small>Authoring</small>
+              <h3>Build the editable deck.</h3>
+              <p>Turn the approved structure into a working `.pptx` document.</p>
+            </article>
+            <article class="phase-card">
+              <small>Verification</small>
+              <h3>Prove it survives handoff.</h3>
+              <p>Confirm layout, titles, editability, and quality gates still hold.</p>
+            </article>
+          </div>
+        </section>
+      </section>
+
+      <section class="section panel">
+        <p class="eyebrow">Workstreams</p>
+        <h2>Five capabilities have to cooperate for the skill to feel professional.</h2>
+        <div class="card-grid">
+          <article class="card">
+            <small>Narrative</small>
+            <h3>Purpose, message, business logic</h3>
+            <p>The deck must know what it is trying to change in the audience.</p>
+          </article>
+          <article class="card">
+            <small>Writing</small>
+            <h3>Action titles and crisp support copy</h3>
+            <p>The text has to be easy to skim, easy to say, and hard to misread.</p>
+          </article>
+          <article class="card">
+            <small>Design</small>
+            <h3>Hierarchy, grids, evidence display, motion</h3>
+            <p>The style should feel chosen for the message, not copied from a template farm.</p>
+          </article>
+          <article class="card">
+            <small>Technical</small>
+            <h3>PPTX CRUD and OOXML awareness</h3>
+            <p>The deck has to be editable, verifiable, and safe to update later.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

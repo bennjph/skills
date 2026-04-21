@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Style Systems Mock Deck Review</title>
+  <style>
+    :root {
+      --bg: #f4efe7;
+      --panel: #fffaf3;
+      --ink: #1f1a15;
+      --muted: #6f655b;
+      --border: #d9cbb8;
+      --shadow: 0 10px 30px rgba(31, 26, 21, 0.08);
+      --blue-ink: #1f3143;
+      --blue-accent: #355f88;
+      --blue-soft: #dce6f0;
+      --blue-mid: #84a0bd;
+      --paper: #f7f0e5;
+      --op-ink: #1e2c39;
+      --op-accent: #4f7697;
+      --op-soft: #dfe8f0;
+      --op-mid: #94b2ca;
+      --gold: #ddb579;
+      --dark: #211b23;
+      --dark-soft: #3b313d;
+      --cream: #f5ece0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+      background:
+        radial-gradient(circle at top right, rgba(53, 95, 136, 0.08), transparent 28%),
+        linear-gradient(180deg, #f7f2ea 0%, var(--bg) 100%);
+      line-height: 1.45;
+    }
+    .page {
+      width: min(1480px, calc(100% - 40px));
+      margin: 24px auto 48px;
+    }
+    .hero, .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 26px;
+      margin-bottom: 24px;
+    }
+    h1, h2, h3, h4 {
+      margin: 0 0 12px;
+      line-height: 1.12;
+    }
+    h1 { font-size: 2.5rem; letter-spacing: -0.035em; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.12rem; }
+    p { margin: 0 0 12px; }
+    .meta, .small { color: var(--muted); }
+    .small { font-size: 0.94rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(31, 26, 21, 0.06);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+    .matrix {
+      display: grid;
+      grid-template-columns: 240px repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      align-items: start;
+    }
+    .matrix-header, .slide-label, .slide-card {
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: rgba(255,255,255,0.62);
+    }
+    .matrix-header, .slide-label { padding: 18px; }
+    .matrix-header h3 { margin-bottom: 8px; }
+    .slide-label {
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(250,244,236,0.96));
+    }
+    .slide-label .role {
+      font-size: 0.88rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .slide-label .note {
+      margin-top: 16px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .slide-card {
+      min-height: 420px;
+      overflow: hidden;
+    }
+    .slide-frame {
+      width: 100%;
+      height: 100%;
+      padding: 18px;
+    }
+    .slide {
+      height: 100%;
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px;
+    }
+    .eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+    .title {
+      font-size: 2rem;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      max-width: 88%;
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+    .support {
+      font-size: 1rem;
+      max-width: 78%;
+    }
+    .foot {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+    .mini-pill {
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+    .bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      height: 200px;
+      padding: 18px 18px 12px;
+      border-radius: 18px;
+      margin-top: 12px;
+    }
+    .bar-group {
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 8px;
+      height: 100%;
+    }
+    .bar {
+      width: 34px;
+      border-radius: 10px 10px 0 0;
+    }
+    .bar-labels {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 10px;
+      font-size: 0.82rem;
+      text-align: center;
+    }
+    .comparison-table, .timeline, .step-grid, .summary-grid {
+      border-radius: 18px;
+      margin-top: 14px;
+    }
+    .comparison-table {
+      padding: 14px 16px;
+      font-size: 0.88rem;
+    }
+    .comparison-row {
+      display: grid;
+      grid-template-columns: 1.2fr 0.7fr 0.7fr;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .comparison-row:last-child { border-bottom: none; }
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding: 14px;
+    }
+    .timeline .step, .step-grid .step {
+      border-radius: 16px;
+      padding: 12px;
+      min-height: 84px;
+    }
+    .step-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .summary-grid {
+      padding: 14px 16px;
+    }
+    .summary-row {
+      display: grid;
+      grid-template-columns: 0.9fr 1.3fr;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .summary-row:last-child { border-bottom: none; }
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .review-note {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      background: rgba(255,255,255,0.72);
+    }
+
+    .editorial-slide {
+      background: linear-gradient(180deg, #fbf6ef 0%, #f2e8da 100%);
+      color: #17110d;
+    }
+    .editorial-slide .eyebrow { color: var(--blue-accent); }
+    .editorial-slide .accent-line {
+      width: 88px;
+      height: 2px;
+      background: var(--blue-accent);
+      margin: 16px 0;
+    }
+    .editorial-slide .mini-pill,
+    .editorial-slide .comparison-table,
+    .editorial-slide .timeline,
+    .editorial-slide .summary-grid,
+    .editorial-slide .bars {
+      background: rgba(53, 95, 136, 0.09);
+    }
+    .editorial-slide .mini-pill { color: var(--blue-ink); }
+    .editorial-slide .bar.focus { background: #335d86; }
+    .editorial-slide .bar.broad { background: #a7bed2; }
+    .editorial-slide .timeline .step { background: rgba(255,255,255,0.6); }
+
+    .operational-slide {
+      background: linear-gradient(180deg, #f7fafc 0%, #eaf1f6 100%);
+      color: var(--op-ink);
+    }
+    .operational-slide .eyebrow { color: var(--op-accent); }
+    .operational-slide .mini-pill,
+    .operational-slide .comparison-table,
+    .operational-slide .timeline,
+    .operational-slide .summary-grid,
+    .operational-slide .bars {
+      background: rgba(79, 118, 151, 0.11);
+    }
+    .operational-slide .mini-pill { color: var(--op-ink); }
+    .operational-slide .bar.focus { background: #3e6a8d; }
+    .operational-slide .bar.broad { background: #a8bfd3; }
+    .operational-slide .timeline .step { background: rgba(255,255,255,0.58); }
+
+    .premium-slide {
+      background: linear-gradient(180deg, #221c24 0%, #342a36 100%);
+      color: var(--cream);
+    }
+    .premium-slide .eyebrow { color: var(--gold); }
+    .premium-slide .support { color: #d7cabd; }
+    .premium-slide .mini-pill,
+    .premium-slide .comparison-table,
+    .premium-slide .timeline,
+    .premium-slide .summary-grid,
+    .premium-slide .bars,
+    .premium-slide .step-grid .step {
+      background: rgba(221, 181, 121, 0.12);
+    }
+    .premium-slide .mini-pill { color: #f3dcc1; }
+    .premium-slide .comparison-row,
+    .premium-slide .summary-row { border-bottom-color: rgba(255,255,255,0.09); }
+    .premium-slide .bar.focus { background: #ddb579; }
+    .premium-slide .bar.broad { background: #8d7153; }
+    .premium-slide .timeline .step { background: rgba(255,255,255,0.05); }
+
+    @media (max-width: 1220px) {
+      .matrix {
+        grid-template-columns: 1fr;
+      }
+      .slide-label {
+        min-height: auto;
+      }
+      .review-grid {
+        grid-template-columns: 1fr;
+      }
+      .page {
+        width: min(100% - 24px, 1480px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <p class="meta">Prototype artifact from `/Users/corphr.software/Documents/skills/wip-presentation/models/style-system-mock-decks-v0.json` · render target: standalone HTML</p>
+      <h1>Detailed Style System Mock Deck Review</h1>
+      <p>
+        This artifact renders one shared deck scenario across three presentation style systems. The point is to compare
+        real slide behavior, not just mood. Each column below shows how the same opener, proof slide, and recommendation
+        slide would feel under a different style system.
+      </p>
+      <div class="chips">
+        <span class="chip">Scenario: AI Workflow Leadership Pitch</span>
+        <span class="chip">Deck archetype: Executive Decision Deck</span>
+        <span class="chip">Slides shown: opener, proof, recommendation</span>
+        <span class="chip">Goal: choose a design direction before PPTX build</span>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Shared Scenario</h2>
+      <p><strong>Communication job:</strong> get internal leadership approval to narrow launch scope to one AI workflow.</p>
+      <p><strong>Audience:</strong> senior product and GTM leadership.</p>
+      <p><strong>Thesis:</strong> we should narrow the launch to one workflow because proof density and adoption speed will be stronger than a broad release.</p>
+      <p class="small">What changes below is not the argument. It is the visual system, pacing, density, and evidence treatment.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Side-by-Side Mock Deck Screens</h2>
+      <div class="matrix">
+        <div class="matrix-header">
+          <h3>Slide Role</h3>
+          <p class="small">Read each row left to right. Ask which system best fits the same job without changing the core argument.</p>
+        </div>
+        <div class="matrix-header">
+          <h3>Editorial Signal</h3>
+          <p class="small">Typography-first, asymmetrical, clean, and product-forward.</p>
+        </div>
+        <div class="matrix-header">
+          <h3>Operational Clarity</h3>
+          <p class="small">Proof-first, data-clean, enterprise-safe, and still modern.</p>
+        </div>
+        <div class="matrix-header">
+          <h3>Premium Narrative</h3>
+          <p class="small">Restrained premium drama with real narrative pacing.</p>
+        </div>
+
+        <div class="slide-label">
+          <div class="role">Opener</div>
+          <h3>Thesis and framing</h3>
+          <p>The first slide should make the decision legible fast and set the energy level for the rest of the deck.</p>
+          <p class="note">Watch: title rhythm, amount of framing copy, and how proof gets hinted before the evidence slides.</p>
+        </div>
+
+        <div class="slide-card">
+          <div class="slide-frame">
+            <div class="slide editorial-slide">
+              <div>
+                <div class="eyebrow">Editorial Signal</div>
+                <div class="title">We should narrow the launch to one workflow to increase proof density and adoption speed.</div>
+                <div class="support">A focused launch gives us cleaner user evidence, a faster GTM story, and lower execution risk in the first 90 days.</div>
+                <div class="accent-line"></div>
+              </div>
+              <div>
+                <div class="foot">
+                  <div class="mini-pill">90-day proof window</div>
+                  <div class="mini-pill">2x clearer GTM story</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-card">
+          <div class="slide-frame">
+            <div class="slide operational-slide">
+              <div>
+                <div class="eyebrow">Operational Clarity</div>
+                <div class="title">Narrowing to workflow one is the clearest path to faster proof and lower launch risk.</div>
+                <div class="summary-grid">
+                  <div class="summary-row"><strong>Decision</strong><span>Narrow to workflow one</span></div>
+                  <div class="summary-row"><strong>Why now</strong><span>Need cleaner proof before scale</span></div>
+                  <div class="summary-row"><strong>Main risk</strong><span>Delay breadth by one quarter</span></div>
+                </div>
+              </div>
+              <div class="foot">
+                <div class="mini-pill">Leadership review format</div>
+                <div class="mini-pill">Appendix-ready</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-card">
+          <div class="slide-frame">
+            <div class="slide premium-slide">
+              <div>
+                <div class="eyebrow">Premium Narrative</div>
+                <div class="title">The launch only feels inevitable if we make the story simple enough to prove.</div>
+                <div class="support">One workflow creates a cleaner proof arc, tighter product story, and more believable momentum.</div>
+              </div>
+              <div class="foot">
+                <div class="mini-pill">Cleaner proof in 90 days</div>
+                <div class="mini-pill">Lower launch complexity</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-label">
+          <div class="role">Proof Slide</div>
+          <h3>Evidence and comparison</h3>
+          <p>The same metric story should feel different in each system without losing clarity.</p>
+          <p class="note">Watch: chart styling, table use, caption treatment, and how much support detail is visible on-slide.</p>
+        </div>
+
+        <div class="slide-card">
+          <div class="slide-frame">
+            <div class="slide editorial-slide">
+              <div>
+                <div class="eyebrow">Proof</div>
+                <div class="title">One workflow outperforms a broad launch across activation, readiness, and sales clarity.</div>
+                <div class="bars">
+                  <div class="bar-group">
+                    <div class="bar broad" style="height:48%"></div>
+                    <div class="bar focus" style="height:74%"></div>
+                  </div>
+                  <div class="bar-group">
+                    <div class="bar broad" style="height:55%"></div>
+                    <div class="bar focus" style="height:82%"></div>
+                  </div>
+                  <div class="bar-group">
+                    <div class="bar broad" style="height:41%"></div>
+                    <div class="bar focus" style="height:69%"></div>
+                  </div>
+                </div>
+                <div class="bar-labels">
+                  <div>Activation</div>
+                  <div>Readiness</div>
+                  <div>Sales clarity</div>
+                </div>
+              </div>
+              <div class="foot">
+                <div class="mini-pill">Focused launch wins in all three metrics</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-card">
+          <div class="slide-frame">
+            <div class="slide operational-slide">
+              <div>
+                <div class="eyebrow">Proof</div>
+                <div class="title">A focused launch produces better adoption signals and a clearer GTM story.</div>
+                <div class="bars">
+                  <div class="bar-group">
+                    <div class="bar broad" style="height:48%"></div>
+                    <div class="bar focus" style="height:74%"></div>
+                  </div>
+                  <div class="bar-group">
+                    <div class="bar broad" style="height:55%"></div>
+                    <div class="bar focus" style="height:82%"></div>
+                  </div>
+                  <div class="bar-group">
+                    <div class="bar broad" style="height:41%"></div>
+                    <div class="bar focus" style="height:69%"></div>
+                  </div>
+                </div>
+                <div class="comparison-table">
+                  <div class="comparison-row"><strong>Option</strong><strong>Impact</strong><strong>Risk</strong></div>
+                  <div class="comparison-row"><span>Narrow launch</span><span>High</span><span>Low</span></div>
+                  <div class="comparison-row"><span>Broad launch</span><span>Medium</span><span>High</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-card">
+          <div class="slide-frame">
+            <div class="slide premium-slide">
+              <div>
+                <div class="eyebrow">Proof</div>
+                <div class="title">The focused path wins because the evidence is sharper, faster, and easier to tell.</div>
+                <div class="bars">
+                  <div class="bar-group">
+                    <div class="bar broad" style="height:48%"></div>
+                    <div class="bar focus" style="height:74%"></div>
+                  </div>
+                  <div class="bar-group">
+                    <div class="bar broad" style="height:55%"></div>
+                    <div class="bar focus" style="height:82%"></div>
+                  </div>
+                  <div class="bar-group">
+                    <div class="bar broad" style="height:41%"></div>
+                    <div class="bar focus" style="height:69%"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="foot">
+                <div class="mini-pill">Sharper proof, cleaner launch story</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-label">
+          <div class="role">Recommendation</div>
+          <h3>Decision and next steps</h3>
+          <p>The final comparison is about how the system handles action, risk, and momentum.</p>
+          <p class="note">Watch: whether the ending feels crisp, heavy, premium, or too vague for the job.</p>
+        </div>
+
+        <div class="slide-card">
+          <div class="slide-frame">
+            <div class="slide editorial-slide">
+              <div>
+                <div class="eyebrow">Recommendation</div>
+                <div class="title">Approve the narrow launch now, then expand after proof and repeatability are established.</div>
+                <div class="support">The product story gets stronger if the next quarter is about one workflow, one proof loop, and one repeatable sales narrative.</div>
+              </div>
+              <div class="timeline">
+                <div class="step"><strong>Approve scope</strong><br>One workflow only.</div>
+                <div class="step"><strong>Ship workflow one</strong><br>Measure activation and usage.</div>
+                <div class="step"><strong>Expand after proof</strong><br>Add the next workflow with evidence.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-card">
+          <div class="slide-frame">
+            <div class="slide operational-slide">
+              <div>
+                <div class="eyebrow">Recommendation</div>
+                <div class="title">Approve a narrow launch now and review expansion only after the first proof cycle.</div>
+                <div class="comparison-table">
+                  <div class="comparison-row"><strong>Recommendation</strong><span style="grid-column: span 2;">Launch workflow one only</span></div>
+                  <div class="comparison-row"><strong>Main risk</strong><span style="grid-column: span 2;">Breadth delayed by one quarter</span></div>
+                  <div class="comparison-row"><strong>Mitigation</strong><span style="grid-column: span 2;">Pre-define expansion trigger based on proof metrics</span></div>
+                </div>
+              </div>
+              <div class="timeline">
+                <div class="step"><strong>Approve</strong><br>Leadership sign-off this week.</div>
+                <div class="step"><strong>Pilot</strong><br>Launch workflow one.</div>
+                <div class="step"><strong>Measure and expand</strong><br>Unlock breadth after evidence.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-card">
+          <div class="slide-frame">
+            <div class="slide premium-slide">
+              <div>
+                <div class="eyebrow">Recommendation</div>
+                <div class="title">Choose the narrower story now so the next expansion feels earned, not assumed.</div>
+                <div class="support">The strongest next move is not a bigger launch. It is a more believable one.</div>
+              </div>
+              <div class="step-grid">
+                <div class="step"><strong>Approve narrow scope</strong><br>Make the decision explicit.</div>
+                <div class="step"><strong>Prove value fast</strong><br>Build one clean evidence loop.</div>
+                <div class="step"><strong>Expand with evidence</strong><br>Grow once the story holds.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>What To Look For In Review</h2>
+      <div class="review-grid">
+        <div class="review-note">
+          <h3>Editorial Signal</h3>
+          <p><strong>Strength:</strong> feels clean, modern, and product-smart very quickly.</p>
+          <p><strong>Risk:</strong> may under-signal seriousness for very formal enterprise leadership if the evidence needs more visible structure.</p>
+        </div>
+        <div class="review-note">
+          <h3>Operational Clarity</h3>
+          <p><strong>Strength:</strong> strongest fit for scrutiny, internal review, and proof-heavy contexts.</p>
+          <p><strong>Risk:</strong> could feel too safe or less memorable if the job needs stronger story energy.</p>
+        </div>
+        <div class="review-note">
+          <h3>Premium Narrative</h3>
+          <p><strong>Strength:</strong> strongest emotional pacing and keynote-like confidence without pure theater.</p>
+          <p><strong>Risk:</strong> can drift too premium for conservative or async-first audiences if overused.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

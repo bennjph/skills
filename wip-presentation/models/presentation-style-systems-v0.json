@@ -1,0 +1,196 @@
+{
+  "version": "0.1.0",
+  "status": "working_model",
+  "source": "Seeded from wip-presentation presentation research and translated reference patterns from cowork design-playground and ai-craft docs.",
+  "systems": [
+    {
+      "id": "editorial-signal",
+      "name": "Editorial Signal",
+      "visual_thesis": "Typography-first, clean, and sharp. Feels like a serious product story with editorial restraint instead of a corporate template.",
+      "fit_tags": {
+        "organization_posture": ["modern-product", "taste-led", "consumer-clean", "founder-driven"],
+        "deck_archetypes": ["product-strategy-deck", "investor-or-pitch-deck", "keynote-or-narrative-reveal-deck"],
+        "delivery_modes": ["live", "async", "both"],
+        "density": "medium",
+        "energy": "measured-high"
+      },
+      "reference_dna": ["Swiss editorial design", "Vercel-style restraint", "modern product storytelling"],
+      "typography": {
+        "headline_style": "large flush-left serif or high-character sans with short action titles",
+        "body_style": "tight sans body with high contrast against titles",
+        "weight_strategy": "few weights, large size jumps, strong left edge"
+      },
+      "color_system": {
+        "base": "warm paper or soft light neutral",
+        "ink": "near-black",
+        "accent": "single deep accent used sparingly",
+        "contrast_strategy": "high hierarchy, low color count"
+      },
+      "grid_and_spacing": {
+        "grid": "asymmetrical editorial grid",
+        "spacing": "generous outer margins, tight internal grouping",
+        "section_rhythm": "hero opener then compressed proof sequences"
+      },
+      "surface_and_shapes": {
+        "containers": "minimal visible containers",
+        "corners": "small or no radius",
+        "rules": "thin rules and alignment do most of the work"
+      },
+      "chart_and_table_treatment": {
+        "charts": "clean axes, minimal legend noise, takeaway-led annotations",
+        "tables": "light rules, strong row grouping, no heavy shading"
+      },
+      "image_and_diagram_posture": {
+        "images": "used as deliberate hero or evidence, never filler",
+        "diagrams": "reduced, label-first, low ornament"
+      },
+      "motion_posture": "subtle reveal only at section openings or single proof moments",
+      "title_behavior": "titles should sound like claims, not categories",
+      "density_profile": "medium density with strong pacing contrast",
+      "banned_patterns": [
+        "default three-box comparison",
+        "thick card walls",
+        "gradient wash backgrounds",
+        "topic-only titles",
+        "decorative icon rows"
+      ],
+      "best_for": [
+        "product strategy deck",
+        "consumer-feeling internal pitch",
+        "product-forward investor story",
+        "external talk with clean visual taste"
+      ],
+      "avoid_when": [
+        "the audience expects dense operational proof on every slide",
+        "heavy tables dominate most of the deck",
+        "the organization posture rewards conservative enterprise signaling"
+      ]
+    },
+    {
+      "id": "operational-clarity",
+      "name": "Operational Clarity",
+      "visual_thesis": "Proof-first and enterprise-safe, but still modern. Feels credible under scrutiny without becoming old, dense, or visually dead.",
+      "fit_tags": {
+        "organization_posture": ["enterprise-formal", "cross-functional", "leadership-review", "proof-heavy"],
+        "deck_archetypes": ["executive-decision-deck", "technical-review-deck", "product-strategy-deck"],
+        "delivery_modes": ["async", "both", "live"],
+        "density": "medium-high",
+        "energy": "steady"
+      },
+      "reference_dna": ["IBM Carbon discipline", "Stripe dashboard clarity", "consulting-grade chart restraint"],
+      "typography": {
+        "headline_style": "compact assertive sans",
+        "body_style": "high-legibility operational sans",
+        "weight_strategy": "clear role-based weights with limited flourish"
+      },
+      "color_system": {
+        "base": "cool neutral or white",
+        "ink": "charcoal",
+        "accent": "muted functional accent set",
+        "contrast_strategy": "clarity over mood"
+      },
+      "grid_and_spacing": {
+        "grid": "predictable modular grid",
+        "spacing": "consistent gutters and evidence blocks",
+        "section_rhythm": "steady information cadence with appendix-ready structure"
+      },
+      "surface_and_shapes": {
+        "containers": "light cards only where grouping helps reading",
+        "corners": "small radius",
+        "rules": "subtle dividers and explicit table structure"
+      },
+      "chart_and_table_treatment": {
+        "charts": "native-feeling charts with clear takeaways and annotations",
+        "tables": "strong headers, restrained zebra or grouped shading, easy scan paths"
+      },
+      "image_and_diagram_posture": {
+        "images": "rare and evidence-based",
+        "diagrams": "structured flows, tradeoff diagrams, architecture or process clarity"
+      },
+      "motion_posture": "minimal or none by default",
+      "title_behavior": "titles carry the decision or implication directly",
+      "density_profile": "medium-high density with disciplined chunking",
+      "banned_patterns": [
+        "marketing-style hero slides with no proof",
+        "decorative stock imagery",
+        "unlabeled charts",
+        "soft low-contrast dashboards",
+        "overuse of colored boxes"
+      ],
+      "best_for": [
+        "leadership deck at enterprise company",
+        "customer or vendor deck with real proof",
+        "technical review",
+        "internal product or GTM decision review"
+      ],
+      "avoid_when": [
+        "the job needs theatrical momentum more than scrutiny",
+        "the presenter voice is intentionally bold or performative",
+        "the deck should feel premium or launch-like first"
+      ]
+    },
+    {
+      "id": "premium-narrative",
+      "name": "Premium Narrative",
+      "visual_thesis": "Restrained premium drama with deliberate hero moments. Feels polished, confident, and story-led without collapsing into keynote cliche.",
+      "fit_tags": {
+        "organization_posture": ["launch-oriented", "external-facing", "premium-brand", "founder-story"],
+        "deck_archetypes": ["keynote-or-narrative-reveal-deck", "investor-or-pitch-deck", "product-strategy-deck"],
+        "delivery_modes": ["live", "both"],
+        "density": "medium-low",
+        "energy": "high"
+      },
+      "reference_dna": ["premium editorial direction", "keynote pacing", "hero-slide presentation craft"],
+      "typography": {
+        "headline_style": "large dramatic titles with strong rhythm",
+        "body_style": "short support copy with generous breathing room",
+        "weight_strategy": "fewer words, more spatial emphasis"
+      },
+      "color_system": {
+        "base": "dark ink on warm light or rich dark canvas, chosen per deck",
+        "ink": "high-contrast core text tone",
+        "accent": "premium metallic, amber, or deep brand accent used with restraint",
+        "contrast_strategy": "mood plus legibility"
+      },
+      "grid_and_spacing": {
+        "grid": "hero-led modular grid",
+        "spacing": "wide margins, big section breaks, selective compression",
+        "section_rhythm": "builds through reveals and contrast moments"
+      },
+      "surface_and_shapes": {
+        "containers": "few visible frames, more composition than cards",
+        "corners": "depends on deck mood, usually soft but not playful",
+        "rules": "thin premium separators or no visible rules"
+      },
+      "chart_and_table_treatment": {
+        "charts": "few but sharp, often one-message proof visuals",
+        "tables": "used sparingly, stripped down to essential comparisons"
+      },
+      "image_and_diagram_posture": {
+        "images": "hero images or product moments only when they carry meaning",
+        "diagrams": "reduced conceptual diagrams, high clarity, low clutter"
+      },
+      "motion_posture": "meaningful reveal rhythm is allowed, but must support comprehension",
+      "title_behavior": "titles can be more dramatic, but still must make a real claim",
+      "density_profile": "medium-low with occasional proof bursts",
+      "banned_patterns": [
+        "generic startup gradient theater",
+        "cinematic clutter",
+        "overwritten body copy",
+        "faux luxury gold overload",
+        "slides that look premium but say nothing"
+      ],
+      "best_for": [
+        "launch narrative",
+        "founder or investor presentation",
+        "high-visibility talk",
+        "product reveal with selective proof"
+      ],
+      "avoid_when": [
+        "most slides need dense tables or detailed evidence",
+        "the audience is highly conservative and formal",
+        "the delivery mode is mostly skim-first async review"
+      ]
+    }
+  ]
+}

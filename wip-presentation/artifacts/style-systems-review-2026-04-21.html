@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Presentation Style Systems Review</title>
+  <style>
+    :root {
+      --bg: #f4efe7;
+      --panel: #fffaf3;
+      --ink: #1f1a15;
+      --muted: #6f655b;
+      --border: #d9cbb8;
+      --shadow: 0 10px 30px rgba(31, 26, 21, 0.08);
+      --blue: #29567a;
+      --olive: #4e5d3f;
+      --wine: #6f2f3f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+      background:
+        radial-gradient(circle at top right, rgba(41, 86, 122, 0.08), transparent 26%),
+        linear-gradient(180deg, #f8f3eb 0%, var(--bg) 100%);
+      color: var(--ink);
+      line-height: 1.45;
+    }
+    .page {
+      width: min(1320px, calc(100% - 40px));
+      margin: 28px auto 48px;
+    }
+    .hero, .panel, .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+    .hero, .panel { padding: 26px; margin-bottom: 22px; }
+    h1, h2, h3, h4 { margin: 0 0 12px; line-height: 1.12; }
+    h1 { font-size: 2.35rem; letter-spacing: -0.03em; }
+    h2 { font-size: 1.45rem; }
+    h3 { font-size: 1.1rem; }
+    p { margin: 0 0 12px; }
+    .meta, .small { color: var(--muted); }
+    .small { font-size: 0.94rem; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .card { overflow: hidden; }
+    .card-body { padding: 18px; }
+    .tag {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin: 0 8px 8px 0;
+      background: rgba(31, 26, 21, 0.07);
+    }
+    .preview {
+      height: 340px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .preview h4 {
+      max-width: 90%;
+      margin-bottom: 10px;
+      font-size: 1.65rem;
+    }
+    .title-strip {
+      font-size: 0.86rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.72;
+      margin-bottom: 14px;
+    }
+    .mini-chart, .mini-table, .mini-proof {
+      border-radius: 14px;
+    }
+    .mini-chart {
+      height: 118px;
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      padding: 18px 16px 14px;
+    }
+    .bar { width: 20%; border-radius: 10px 10px 0 0; }
+    .mini-table {
+      padding: 12px 14px;
+      margin-top: 14px;
+      font-size: 0.82rem;
+    }
+    .mini-table .row {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr 0.7fr;
+      gap: 10px;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .mini-table .row:last-child { border-bottom: 0; }
+    .mini-proof {
+      padding: 14px;
+      margin-top: 16px;
+      font-size: 0.92rem;
+    }
+    ul {
+      margin: 8px 0 0 18px;
+      padding: 0;
+    }
+    li { margin-bottom: 8px; }
+    .split {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 18px;
+    }
+    pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-size: 0.82rem;
+      line-height: 1.5;
+      font-family: "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace;
+    }
+    .json-box {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.68);
+      padding: 14px;
+      max-height: 440px;
+      overflow: auto;
+    }
+    .editorial {
+      background: linear-gradient(180deg, #fcf8f1 0%, #f3ecdf 100%);
+      color: #18120d;
+    }
+    .editorial .title-strip { color: var(--blue); }
+    .editorial .mini-chart,
+    .editorial .mini-table,
+    .editorial .mini-proof { background: rgba(41, 86, 122, 0.08); }
+    .editorial .bar:nth-child(1) { height: 42px; background: #bfcfdd; }
+    .editorial .bar:nth-child(2) { height: 92px; background: #29567a; }
+    .editorial .bar:nth-child(3) { height: 74px; background: #7f9bb7; }
+    .editorial .bar:nth-child(4) { height: 104px; background: #1f3041; }
+
+    .operational {
+      background: linear-gradient(180deg, #f7fafc 0%, #eaf0f5 100%);
+      color: #17202a;
+    }
+    .operational .title-strip { color: #355b7d; }
+    .operational .mini-chart,
+    .operational .mini-table,
+    .operational .mini-proof { background: rgba(53, 91, 125, 0.08); }
+    .operational .bar:nth-child(1) { height: 54px; background: #8fb4d0; }
+    .operational .bar:nth-child(2) { height: 88px; background: #3b6d94; }
+    .operational .bar:nth-child(3) { height: 98px; background: #264d6a; }
+    .operational .bar:nth-child(4) { height: 62px; background: #a9bfd2; }
+
+    .premium {
+      background: linear-gradient(180deg, #201a22 0%, #2d2430 100%);
+      color: #f6efe8;
+    }
+    .premium .title-strip { color: #d8b078; }
+    .premium .mini-chart,
+    .premium .mini-table,
+    .premium .mini-proof { background: rgba(216, 176, 120, 0.10); }
+    .premium .mini-table .row { border-bottom-color: rgba(255,255,255,0.09); }
+    .premium .bar:nth-child(1) { height: 34px; background: #9d7d56; }
+    .premium .bar:nth-child(2) { height: 104px; background: #d8b078; }
+    .premium .bar:nth-child(3) { height: 70px; background: #b18d63; }
+    .premium .bar:nth-child(4) { height: 114px; background: #f2d8b1; }
+
+    @media (max-width: 1120px) {
+      .grid, .split { grid-template-columns: 1fr; }
+      .page { width: min(100% - 24px, 1320px); }
+      h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <script id="style-json" type="application/json">
+{
+  "version": "0.1.0",
+  "status": "working_model",
+  "systems": [
+    {
+      "id": "editorial-signal",
+      "name": "Editorial Signal",
+      "visual_thesis": "Typography-first, clean, and sharp. Feels like a serious product story with editorial restraint instead of a corporate template.",
+      "best_for": ["product strategy deck", "consumer-feeling internal pitch", "product-forward investor story", "external talk with clean visual taste"]
+    },
+    {
+      "id": "operational-clarity",
+      "name": "Operational Clarity",
+      "visual_thesis": "Proof-first and enterprise-safe, but still modern. Feels credible under scrutiny without becoming old, dense, or visually dead.",
+      "best_for": ["leadership deck at enterprise company", "customer or vendor deck with real proof", "technical review", "internal product or GTM decision review"]
+    },
+    {
+      "id": "premium-narrative",
+      "name": "Premium Narrative",
+      "visual_thesis": "Restrained premium drama with deliberate hero moments. Feels polished, confident, and story-led without collapsing into keynote cliche.",
+      "best_for": ["launch narrative", "founder or investor presentation", "high-visibility talk", "product reveal with selective proof"]
+    }
+  ]
+}
+  </script>
+  <main class="page">
+    <section class="hero">
+      <p class="meta">WIP Presentation · style-system seed review · sourced from presentation repo canon plus translated references from `cowork`</p>
+      <h1>Initial Presentation Style Systems</h1>
+      <p>
+        This is the first seeded `Style Pool` for the presentation capability system. The goal is not to finalize
+        the library today. The goal is to make three reusable directions concrete enough that we can compare them,
+        critique them, and decide what belongs in the next round.
+      </p>
+      <p>
+        Each card below shows a preview mood for the system, its core job, and where it fits. The JSON is also
+        embedded here and saved separately so the systems can later be turned into more structured prototype and
+        authoring assets.
+      </p>
+    </section>
+
+    <section class="panel">
+      <h2>Side-by-Side Review</h2>
+      <div class="grid">
+        <article class="card">
+          <div class="preview editorial">
+            <div>
+              <div class="title-strip">Editorial Signal</div>
+              <h4>We should narrow the story to one workflow and let the evidence breathe.</h4>
+              <p class="small">Typography-first, asymmetrical, clean, and product-forward.</p>
+            </div>
+            <div>
+              <div class="mini-chart">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+              </div>
+              <div class="mini-proof">Hero takeaway plus one sharp evidence block. Layout does the hierarchy work.</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <h3>Best fit</h3>
+            <span class="tag">modern product orgs</span>
+            <span class="tag">consumer-clean taste</span>
+            <span class="tag">external talks</span>
+            <span class="tag">investor story</span>
+            <p><strong>Reference DNA:</strong> Swiss editorial design, Vercel-style restraint, modern product storytelling.</p>
+            <p><strong>Use when:</strong> you want the deck to feel clean, confident, and intentionally designed without looking theatrical.</p>
+            <p><strong>Avoid when:</strong> the deck is table-heavy or the audience rewards explicit enterprise-proof structure on most slides.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="preview operational">
+            <div>
+              <div class="title-strip">Operational Clarity</div>
+              <h4>The proposal holds up because the economics, tradeoffs, and risks are visible fast.</h4>
+              <p class="small">Proof-first, data-clean, enterprise-safe, and still modern.</p>
+            </div>
+            <div>
+              <div class="mini-chart">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+              </div>
+              <div class="mini-table">
+                <div class="row"><strong>Option</strong><strong>Impact</strong><strong>Risk</strong></div>
+                <div class="row"><span>Narrow launch</span><span>High</span><span>Low</span></div>
+                <div class="row"><span>Broad launch</span><span>Medium</span><span>High</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <h3>Best fit</h3>
+            <span class="tag">leadership review</span>
+            <span class="tag">enterprise posture</span>
+            <span class="tag">technical review</span>
+            <span class="tag">customer proof</span>
+            <p><strong>Reference DNA:</strong> IBM Carbon discipline, Stripe dashboard clarity, consulting-grade chart restraint.</p>
+            <p><strong>Use when:</strong> the deck must survive scrutiny and still feel current.</p>
+            <p><strong>Avoid when:</strong> the real job is theatrical launch energy or premium story reveal.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="preview premium">
+            <div>
+              <div class="title-strip">Premium Narrative</div>
+              <h4>This launch matters now because the product story is finally simple enough to feel inevitable.</h4>
+              <p class="small">Restrained premium drama with real narrative pacing.</p>
+            </div>
+            <div>
+              <div class="mini-chart">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+              </div>
+              <div class="mini-proof">Hero moments, fewer words, stronger visual contrast, selective proof bursts.</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <h3>Best fit</h3>
+            <span class="tag">launch story</span>
+            <span class="tag">investor pitch</span>
+            <span class="tag">keynote</span>
+            <span class="tag">high-visibility talk</span>
+            <p><strong>Reference DNA:</strong> premium editorial direction, keynote pacing, hero-slide presentation craft.</p>
+            <p><strong>Use when:</strong> you need a stronger emotional arc without turning the deck into empty theater.</p>
+            <p><strong>Avoid when:</strong> the audience is conservative, async-first, or expects heavy operational detail on most slides.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel split">
+      <div>
+        <h2>What This Closes</h2>
+        <ul>
+          <li>The repo now has an actual initial `Style System` package shape, not just taste rules.</li>
+          <li>The `Style Pool` now has three seeded systems with different jobs and reference DNA.</li>
+          <li>The systems are concrete enough to compare in future prototype work instead of re-inventing visual direction every time.</li>
+        </ul>
+
+        <h2 style="margin-top: 22px;">What Is Still Open</h2>
+        <ul>
+          <li>The full file layout for a mature style library.</li>
+          <li>Exact typography scales, chart rules, and master-slide rules for each system.</li>
+          <li>Whether these three systems are enough, or whether one more enterprise-premium or talk-specific system is needed.</li>
+          <li>Which systems survive real deck review once they are used in `Prototype Tree` work.</li>
+        </ul>
+
+        <h2 style="margin-top: 22px;">Next Good Moves</h2>
+        <ul>
+          <li>Pick one realistic deck job and test all three systems against it.</li>
+          <li>Add `Style Variant` examples for one organization posture difference, such as SAP vs Instagram.</li>
+          <li>Freeze a first `Style Fit Tags` vocabulary so selection gets more disciplined.</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Detailed Mock Deck Review</h2>
+        <p>The richer side-by-side mock deck comparison now lives in a separate review artifact with opener, proof, and recommendation slides across all three systems.</p>
+        <p><a href="file:///Users/corphr.software/Documents/skills/wip-presentation/artifacts/style-systems-mock-review-2026-04-21.html">Open the detailed mock review</a></p>
+        <div class="json-box">
+          <img
+            src="/Users/corphr.software/Documents/skills/wip-presentation/artifacts/style-systems-mock-review-2026-04-21.png"
+            alt="Preview of the detailed mock deck comparison"
+            style="display:block;width:100%;height:auto;border-radius:14px;"
+          />
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

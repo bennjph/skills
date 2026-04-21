@@ -1,0 +1,282 @@
+{
+  "name": "wip-presentation-skill",
+  "version": "0.1.0",
+  "summary": "Source-of-truth model for a presentation skill that combines narrative architecture, design judgment, JSON-first prototyping, and PPTX CRUD.",
+  "artifacts": [
+    {
+      "type": "data-model",
+      "name": "presentation-skill-capability-map",
+      "entities": {
+        "useCases": [
+          {
+            "id": "uc_exec_update",
+            "name": "Executive update",
+            "audience": "Leadership team",
+            "stakes": "Medium to high",
+            "desiredOutcome": "Approve a direction or unblock a decision",
+            "failureMode": "Deck becomes status noise instead of decision support"
+          },
+          {
+            "id": "uc_technical_review",
+            "name": "Technical architecture review",
+            "audience": "Engineering and technical leadership",
+            "stakes": "High",
+            "desiredOutcome": "Establish confidence in a design and its tradeoffs",
+            "failureMode": "Claims outrun proof and the deck collapses under expert questions"
+          },
+          {
+            "id": "uc_pitch",
+            "name": "Pitch or investment narrative",
+            "audience": "Investors or external decision-makers",
+            "stakes": "High",
+            "desiredOutcome": "Create belief, urgency, and a next-step commitment",
+            "failureMode": "The deck looks polished but the why-now story never lands"
+          },
+          {
+            "id": "uc_product_story",
+            "name": "Product strategy or roadmap review",
+            "audience": "Cross-functional product and business partners",
+            "stakes": "Medium to high",
+            "desiredOutcome": "Align on priorities, sequencing, and tradeoffs",
+            "failureMode": "Too many initiatives compete for the main story and no thesis survives"
+          }
+        ],
+        "workstreams": [
+          {
+            "id": "ws_technical",
+            "name": "Technical PPTX CRUD",
+            "focus": "Safe create/read/update/delete/verify operations on editable presentations",
+            "priority": "high"
+          },
+          {
+            "id": "ws_prototype",
+            "name": "Prototype-first JSON pipeline",
+            "focus": "Model deck logic and structure before PPTX generation",
+            "priority": "high"
+          },
+          {
+            "id": "ws_design",
+            "name": "Design process and taste",
+            "focus": "Elite designer standards for hierarchy, layout, charts, and motion",
+            "priority": "high"
+          },
+          {
+            "id": "ws_writing",
+            "name": "Writing style",
+            "focus": "Clear, crisp, point-first slide writing and note writing",
+            "priority": "high"
+          },
+          {
+            "id": "ws_narrative",
+            "name": "Narrative architecture",
+            "focus": "Purpose, audience, argument flow, and business logic",
+            "priority": "critical"
+          }
+        ],
+        "qualityGates": [
+          {
+            "id": "qg_titles",
+            "name": "Action titles carry the story",
+            "severity": "critical"
+          },
+          {
+            "id": "qg_density",
+            "name": "One clear message per slide",
+            "severity": "critical"
+          },
+          {
+            "id": "qg_editability",
+            "name": "Meaningful text and data remain editable",
+            "severity": "critical"
+          },
+          {
+            "id": "qg_prototype",
+            "name": "Narrative prototype is reviewed before deck build",
+            "severity": "high"
+          },
+          {
+            "id": "qg_accessibility",
+            "name": "Contrast and reading order are respected",
+            "severity": "high"
+          },
+          {
+            "id": "qg_anti_slop",
+            "name": "Avoid generic AI deck patterns",
+            "severity": "high"
+          }
+        ],
+        "deliverables": [
+          {
+            "id": "d_brief",
+            "name": "Deck brief",
+            "format": "structured notes"
+          },
+          {
+            "id": "d_proto_json",
+            "name": "Prototype JSON",
+            "format": "json"
+          },
+          {
+            "id": "d_proto_artifact",
+            "name": "Prototype artifact",
+            "format": "html"
+          },
+          {
+            "id": "d_slide_plan",
+            "name": "Slide plan",
+            "format": "structured outline"
+          },
+          {
+            "id": "d_pptx",
+            "name": "Editable deck",
+            "format": "pptx"
+          },
+          {
+            "id": "d_verify",
+            "name": "Verification evidence",
+            "format": "report"
+          }
+        ]
+      },
+      "relationships": [
+        {
+          "from": "workstreams",
+          "to": "qualityGates",
+          "type": "satisfies"
+        },
+        {
+          "from": "useCases",
+          "to": "deliverables",
+          "type": "requires"
+        }
+      ]
+    },
+    {
+      "type": "flow",
+      "name": "presentation-skill-default-flow",
+      "nodes": [
+        {
+          "id": "discover",
+          "label": "Capture audience, purpose, stakes, and desired decision",
+          "type": "start"
+        },
+        {
+          "id": "narrative",
+          "label": "Shape the message and slide roles",
+          "type": "step"
+        },
+        {
+          "id": "prototype_json",
+          "label": "Model the deck as JSON-first structure",
+          "type": "step"
+        },
+        {
+          "id": "prototype_artifact",
+          "label": "Render an inspectable artifact",
+          "type": "step"
+        },
+        {
+          "id": "review_gate",
+          "label": "Does the story hold when skimmed?",
+          "type": "decision"
+        },
+        {
+          "id": "revise_story",
+          "label": "Revise narrative, density, or sequencing",
+          "type": "step"
+        },
+        {
+          "id": "build_pptx",
+          "label": "Author or update the editable PPTX",
+          "type": "step"
+        },
+        {
+          "id": "verify",
+          "label": "Verify visual quality and document integrity",
+          "type": "step"
+        },
+        {
+          "id": "done",
+          "label": "Deliver final deck and next-step guidance",
+          "type": "end"
+        }
+      ],
+      "edges": [
+        {
+          "from": "discover",
+          "to": "narrative"
+        },
+        {
+          "from": "narrative",
+          "to": "prototype_json"
+        },
+        {
+          "from": "prototype_json",
+          "to": "prototype_artifact"
+        },
+        {
+          "from": "prototype_artifact",
+          "to": "review_gate"
+        },
+        {
+          "from": "review_gate",
+          "to": "revise_story",
+          "label": "No"
+        },
+        {
+          "from": "revise_story",
+          "to": "prototype_json"
+        },
+        {
+          "from": "review_gate",
+          "to": "build_pptx",
+          "label": "Yes"
+        },
+        {
+          "from": "build_pptx",
+          "to": "verify"
+        },
+        {
+          "from": "verify",
+          "to": "done"
+        }
+      ]
+    },
+    {
+      "type": "timing",
+      "name": "presentation-job-phases",
+      "phases": [
+        {
+          "id": "briefing",
+          "duration": "short",
+          "state": "Clarify purpose, audience, and constraints",
+          "trigger": "request received"
+        },
+        {
+          "id": "structuring",
+          "duration": "medium",
+          "state": "Narrative, titles, and slide roles are shaped",
+          "trigger": "brief is stable"
+        },
+        {
+          "id": "prototyping",
+          "duration": "medium",
+          "state": "JSON and visual artifact expose structure before deck build",
+          "trigger": "story skeleton exists"
+        },
+        {
+          "id": "authoring",
+          "duration": "medium to long",
+          "state": "Editable deck is built or updated",
+          "trigger": "prototype approved"
+        },
+        {
+          "id": "verification",
+          "duration": "short",
+          "state": "Deck is checked for fidelity, editability, and quality gates",
+          "trigger": "authoring complete"
+        }
+      ]
+    }
+  ]
+}

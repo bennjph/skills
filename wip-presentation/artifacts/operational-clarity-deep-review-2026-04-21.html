@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operational Clarity Deep Review</title>
+  <style>
+    :root {
+      --bg: #f4f7fa;
+      --panel: #fbfdff;
+      --ink: #1f2d39;
+      --muted: #667789;
+      --border: #d5e0ea;
+      --shadow: 0 12px 32px rgba(31,45,57,0.08);
+      --accent: #456d8e;
+      --accent-2: #94b0c8;
+      --accent-3: #dce7f0;
+      --success: #547a66;
+      --warn: #9c6a3f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top right, rgba(69,109,142,0.08), transparent 28%),
+        linear-gradient(180deg, #f8fbfd 0%, var(--bg) 100%);
+      color: var(--ink);
+      font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+      line-height: 1.45;
+    }
+    .page {
+      width: min(1360px, calc(100% - 36px));
+      margin: 22px auto 48px;
+    }
+    .hero, .panel, .slide-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+    .hero, .panel { padding: 26px; margin-bottom: 22px; }
+    h1, h2, h3, h4 { margin: 0 0 12px; line-height: 1.12; }
+    h1 { font-size: 2.45rem; letter-spacing: -0.035em; }
+    h2 { font-size: 1.45rem; }
+    h3 { font-size: 1.08rem; }
+    p { margin: 0 0 12px; }
+    .meta, .small { color: var(--muted); }
+    .small { font-size: 0.94rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .chip {
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(69,109,142,0.08);
+      color: var(--ink);
+      font-size: 0.87rem;
+      font-weight: 700;
+    }
+    .deck-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .slide-card {
+      padding: 18px;
+    }
+    .slide-shell {
+      border-radius: 22px;
+      background: linear-gradient(180deg, #f7fafc 0%, #eaf1f6 100%);
+      border: 1px solid var(--border);
+      padding: 24px;
+      min-height: 470px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .title {
+      font-size: 2rem;
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+      max-width: 88%;
+      font-weight: 700;
+    }
+    .support {
+      max-width: 80%;
+      font-size: 1rem;
+    }
+    .summary-grid,
+    .comparison-table,
+    .friction-grid,
+    .bars,
+    .timeline,
+    .appendix-grid {
+      margin-top: 16px;
+      border-radius: 18px;
+      background: rgba(69,109,142,0.10);
+      padding: 14px 16px;
+    }
+    .summary-row,
+    .comparison-row {
+      display: grid;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(31,45,57,0.08);
+      font-size: 0.9rem;
+    }
+    .summary-row { grid-template-columns: 0.8fr 1.3fr; }
+    .comparison-row { grid-template-columns: 1.2fr 0.7fr 0.7fr; }
+    .summary-row:last-child,
+    .comparison-row:last-child { border-bottom: none; }
+    .friction-grid,
+    .timeline,
+    .appendix-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .timeline { grid-template-columns: repeat(4, 1fr); }
+    .friction,
+    .time-step,
+    .appendix-block {
+      border-radius: 16px;
+      background: rgba(255,255,255,0.55);
+      padding: 12px;
+      min-height: 98px;
+    }
+    .bars {
+      height: 220px;
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+    }
+    .bar-group {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 8px;
+    }
+    .bar {
+      width: 34px;
+      border-radius: 10px 10px 0 0;
+    }
+    .focus { background: var(--accent); }
+    .broad { background: var(--accent-2); }
+    .bar-labels {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      text-align: center;
+      font-size: 0.82rem;
+      margin-top: 10px;
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .decision-box,
+    .risk-box {
+      border-radius: 18px;
+      padding: 16px;
+      background: rgba(69,109,142,0.10);
+    }
+    .risk-box { background: rgba(156,106,63,0.10); }
+    .note-box {
+      margin-top: 16px;
+      border-left: 4px solid var(--accent);
+      background: rgba(69,109,142,0.06);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 0.94rem;
+    }
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .review-note {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      background: rgba(255,255,255,0.72);
+    }
+    @media (max-width: 1120px) {
+      .deck-list,
+      .review-grid,
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+      .timeline,
+      .appendix-grid,
+      .friction-grid {
+        grid-template-columns: 1fr;
+      }
+      .page {
+        width: min(100% - 24px, 1360px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <p class="meta">Prototype artifact from `/Users/corphr.software/Documents/skills/wip-presentation/models/operational-clarity-deep-mock-v0.json`</p>
+      <h1>Operational Clarity Deep Review</h1>
+      <p>
+        This is a deeper mock of one style system, not a side-by-side style comparison. The goal is to test whether
+        `Operational Clarity` can actually carry a full internal leadership decision deck with enough structure,
+        readability, and modernity.
+      </p>
+      <div class="chips">
+        <span class="chip">Style system: Operational Clarity</span>
+        <span class="chip">Deck archetype: Executive Decision Deck</span>
+        <span class="chip">Audience: senior product and GTM leadership</span>
+        <span class="chip">Slides shown: 6</span>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Scenario</h2>
+      <p><strong>Communication job:</strong> get approval to narrow launch scope to one AI workflow for the next quarter.</p>
+      <p><strong>Organization posture:</strong> formal, proof-heavy, cross-functional.</p>
+      <p><strong>Thesis:</strong> we should narrow the launch to one workflow because it increases proof density, reduces execution risk, and gives GTM a clearer story.</p>
+      <p class="small">What we are testing here is not the thesis itself. It is whether this style system can hold that thesis through multiple slide roles without falling into either old enterprise sludge or product-story vagueness.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Mock Deck</h2>
+      <div class="deck-list">
+        <article class="slide-card">
+          <h3>1. Opener</h3>
+          <div class="slide-shell">
+            <div>
+              <div class="eyebrow">Operational Clarity · Opener</div>
+              <div class="title">Narrowing the launch to one workflow is the fastest path to proof and lower execution risk.</div>
+              <div class="summary-grid">
+                <div class="summary-row"><strong>Decision</strong><span>Launch workflow one only</span></div>
+                <div class="summary-row"><strong>Why now</strong><span>Need clean proof before scale</span></div>
+                <div class="summary-row"><strong>Main risk</strong><span>Breadth delayed by one quarter</span></div>
+              </div>
+            </div>
+            <div class="note-box">Speaker note posture: state the decision in the first 20 seconds, then explain why breadth is riskier than it looks.</div>
+          </div>
+        </article>
+
+        <article class="slide-card">
+          <h3>2. Context</h3>
+          <div class="slide-shell">
+            <div>
+              <div class="eyebrow">Operational Clarity · Context</div>
+              <div class="title">The current broad launch plan asks product, GTM, and enablement to absorb too much ambiguity at once.</div>
+              <div class="friction-grid">
+                <div class="friction"><strong>Product</strong><br>Evidence diluted across workflows.</div>
+                <div class="friction"><strong>GTM</strong><br>Story too broad to land cleanly.</div>
+                <div class="friction"><strong>Enablement</strong><br>Readiness split across too many paths.</div>
+              </div>
+            </div>
+            <div class="note-box">Speaker note posture: frame this as coordination cost, not just product scope preference.</div>
+          </div>
+        </article>
+
+        <article class="slide-card">
+          <h3>3. Proof</h3>
+          <div class="slide-shell">
+            <div>
+              <div class="eyebrow">Operational Clarity · Proof</div>
+              <div class="title">A focused launch beats a broad release on activation, readiness, and sales clarity.</div>
+              <div class="bars">
+                <div class="bar-group">
+                  <div class="bar broad" style="height:48%"></div>
+                  <div class="bar focus" style="height:74%"></div>
+                </div>
+                <div class="bar-group">
+                  <div class="bar broad" style="height:55%"></div>
+                  <div class="bar focus" style="height:82%"></div>
+                </div>
+                <div class="bar-group">
+                  <div class="bar broad" style="height:41%"></div>
+                  <div class="bar focus" style="height:69%"></div>
+                </div>
+              </div>
+              <div class="bar-labels">
+                <div>Activation</div>
+                <div>Readiness</div>
+                <div>Sales clarity</div>
+              </div>
+              <div class="comparison-table">
+                <div class="comparison-row"><strong>Option</strong><strong>Impact</strong><strong>Risk</strong></div>
+                <div class="comparison-row"><span>Narrow launch</span><span>High</span><span>Low</span></div>
+                <div class="comparison-row"><span>Broad launch</span><span>Medium</span><span>High</span></div>
+              </div>
+            </div>
+            <div class="note-box">Speaker note posture: walk left to right through the chart, then land on the operating implication instead of re-reading numbers.</div>
+          </div>
+        </article>
+
+        <article class="slide-card">
+          <h3>4. Comparison</h3>
+          <div class="slide-shell">
+            <div>
+              <div class="eyebrow">Operational Clarity · Comparison</div>
+              <div class="title">The real choice is speed of proof versus breadth of promise.</div>
+              <div class="comparison-table">
+                <div class="comparison-row"><strong>Decision row</strong><strong>Focused path</strong><strong>Broad path</strong></div>
+                <div class="comparison-row"><span>Proof speed</span><span>Fast</span><span>Slow</span></div>
+                <div class="comparison-row"><span>Execution risk</span><span>Lower</span><span>Higher</span></div>
+                <div class="comparison-row"><span>GTM clarity</span><span>Sharper</span><span>Blurrier</span></div>
+                <div class="comparison-row"><span>Perceived ambition</span><span>Narrower now</span><span>Broader now</span></div>
+              </div>
+            </div>
+            <div class="note-box">Speaker note posture: use this slide to force the tradeoff into the room. Do not let the discussion stay vague.</div>
+          </div>
+        </article>
+
+        <article class="slide-card">
+          <h3>5. Recommendation</h3>
+          <div class="slide-shell">
+            <div>
+              <div class="eyebrow">Operational Clarity · Recommendation</div>
+              <div class="title">Approve a narrow launch now and review expansion only after the first proof cycle.</div>
+              <div class="two-col">
+                <div class="decision-box">
+                  <strong>Recommendation</strong>
+                  <p>Launch workflow one only for the next quarter.</p>
+                </div>
+                <div class="risk-box">
+                  <strong>Risk and mitigation</strong>
+                  <p>Stakeholders may read narrower scope as lower ambition. Mitigate by pre-defining the expansion trigger.</p>
+                </div>
+              </div>
+              <div class="timeline">
+                <div class="time-step"><strong>Approve</strong><br>This week</div>
+                <div class="time-step"><strong>Pilot</strong><br>Q1</div>
+                <div class="time-step"><strong>Measure</strong><br>30–45 days</div>
+                <div class="time-step"><strong>Expand</strong><br>After proof threshold</div>
+              </div>
+            </div>
+            <div class="note-box">Speaker note posture: end on the decision, the risk, and the exact trigger for expansion so the deck feels actionable.</div>
+          </div>
+        </article>
+
+        <article class="slide-card">
+          <h3>6. Appendix Evidence</h3>
+          <div class="slide-shell">
+            <div>
+              <div class="eyebrow">Operational Clarity · Appendix</div>
+              <div class="title">Appendix: proof assumptions, launch trigger, and workflow-two expansion path.</div>
+              <div class="appendix-grid">
+                <div class="appendix-block"><strong>Assumptions</strong><br>Activation target > 70<br>Sales clarity > 65<br>Enablement ready before scale</div>
+                <div class="appendix-block"><strong>Expansion trigger</strong><br>Expand only after two consecutive proof checkpoints are met.</div>
+                <div class="appendix-block"><strong>Workflow two path</strong><br>Prepared, but intentionally kept out of the main story.</div>
+              </div>
+            </div>
+            <div class="note-box">Speaker note posture: only pull this up when challenged on assumptions or on what comes after workflow one succeeds.</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Review Questions</h2>
+      <div class="review-grid">
+        <div class="review-note">
+          <h3>Where it is strong</h3>
+          <p>The style handles proof-heavy leadership material well. The deck stays readable, structured, and update-friendly without feeling like an old template.</p>
+        </div>
+        <div class="review-note">
+          <h3>Where it may still be weak</h3>
+          <p>The opener and comparison slides may need a bit more visual tension so the deck does not feel too operationally flat for higher-stakes moments.</p>
+        </div>
+        <div class="review-note">
+          <h3>What to decide next</h3>
+          <p>Whether to keep this as the base internal-leadership system, or create one slightly more premium variant for high-visibility executive decks.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
