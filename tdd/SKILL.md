@@ -75,7 +75,6 @@ For each remaining behavior:
 ```
 RED:   Write next test → fails
 GREEN: Minimal code to pass → passes
-CHECK: Visual checkpoint → verify what was built looks right
 ```
 
 Rules:
@@ -84,13 +83,6 @@ Rules:
 - Only enough code to pass current test
 - Don't anticipate future tests
 - Keep tests focused on observable behavior
-
-**Visual checkpoint (after GREEN):** Before moving to the next test, do a quick visual sanity check:
-
-- For UI work: take a screenshot of the running feature. Does it render? Does the layout make sense?
-- For non-UI work: capture the test output summary. Do the results match what the test intends?
-
-This checkpoint is temporary — it does not get saved to `proofs/`. Its purpose is to catch obvious problems (broken rendering, wrong data shape) early in the loop rather than discovering them later during `/verify`. If something looks wrong, fix it now before writing the next test.
 
 ### 4. Refactor
 
@@ -112,5 +104,4 @@ After all tests pass, look for [refactor candidates](refactoring.md):
 [ ] Test would survive internal refactor
 [ ] Code is minimal for this test
 [ ] No speculative features added
-[ ] Visual checkpoint passed (rendering / output looks right)
 ```

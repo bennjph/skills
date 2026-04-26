@@ -1,11 +1,6 @@
 ---
 name: domain-model
-description: >
-  Grilling session that challenges your understanding of the domain, sharpens terminology,
-  builds a CONTEXT.md glossary, and creates ADRs for hard-to-reverse decisions. Use for
-  "what IS this world?" — defining domain concepts, naming things, establishing bounded
-  contexts, and building the shared language that all future work depends on. Use when
-  starting a new domain, onboarding into unfamiliar territory, or when terms feel fuzzy.
+description: Grilling session that challenges your plan against the existing domain model, sharpens terminology, and updates documentation (CONTEXT.md, ADRs) inline as decisions crystallise. Use when user wants to stress-test a plan against their project's language and documented decisions.
 disable-model-invocation: true
 ---
 
@@ -15,17 +10,11 @@ Ask the questions one at a time, waiting for feedback on each question before co
 
 If a question can be answered by exploring the codebase, explore the codebase instead.
 
-## What this skill is for
-
-This is the "what IS this world?" skill. Before you build anything, you need to know what things are, what they're called, and how they relate. This skill grills you until the domain is mapped — then persists that map so every future conversation starts from shared ground.
-
 ## Domain awareness
-
-**Before creating any files, check the repo's AGENTS.md for domain context conventions.** Some repos specify where CONTEXT.md and ADRs must live. If AGENTS.md defines a convention, follow it instead of the defaults below.
 
 During codebase exploration, also look for existing documentation:
 
-### File structure (defaults — override if AGENTS.md says otherwise)
+### File structure
 
 Most repos have a single context:
 
@@ -39,27 +28,23 @@ Most repos have a single context:
 └── src/
 ```
 
-### Multi-module repos (like this one)
-
-Some repos have both an overall context and per-module contexts:
+If a `CONTEXT-MAP.md` exists at the root, the repo has multiple contexts. The map points to where each one lives:
 
 ```
-├── CONTEXT.md                         ← overall domain context
-├── UBIQUITOUS_LANGUAGE.md             ← project-wide glossary
-├── docs/modules/
-│   ├── cowork/
-│   │   └── CONTEXT.md                 ← per-module glossary
-│   └── visual-dev-tooling/
-│       └── CONTEXT.md                 ← per-module glossary
+/
+├── CONTEXT-MAP.md
+├── docs/
+│   └── adr/                          ← system-wide decisions
+├── src/
+│   ├── ordering/
+│   │   ├── CONTEXT.md
+│   │   └── docs/adr/                 ← context-specific decisions
+│   └── billing/
+│       ├── CONTEXT.md
+│       └── docs/adr/
 ```
 
-In this pattern:
-- Root `CONTEXT.md` holds cross-cutting concepts that span all modules.
-- Per-module `CONTEXT.md` files hold module-specific terms and relationships.
-- Root `UBIQUITOUS_LANGUAGE.md` holds the project-wide glossary.
-- ADRs live at `docs/modules/<project>/adr/`.
-
-Create files lazily — only when you have something to write. If no `CONTEXT.md` exists in the target location, create one when the first term is resolved. If no `adr/` directory exists, create it when the first ADR is needed.
+Create files lazily — only when you have something to write. If no `CONTEXT.md` exists, create one when the first term is resolved. If no `docs/adr/` exists, create it when the first ADR is needed.
 
 ## During the session
 
@@ -82,6 +67,8 @@ When the user states how something works, check whether the code agrees. If you 
 ### Update CONTEXT.md inline
 
 When a term is resolved, update `CONTEXT.md` right there. Don't batch these up — capture them as they happen. Use the format in [CONTEXT-FORMAT.md](./CONTEXT-FORMAT.md).
+
+Don't couple `CONTEXT.md` to implementation details. Only include terms that are meaningful to domain experts.
 
 ### Offer ADRs sparingly
 

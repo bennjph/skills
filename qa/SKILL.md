@@ -1,26 +1,11 @@
 ---
 name: qa
-description: >
-  Conversational QA and bug reporting session. User describes problems in natural language,
-  agent clarifies, explores the codebase for domain context in the background, and files
-  durable issues. The feedback loop skill — use AFTER shipping code to capture what's broken.
-  Issues feed back into grill-me for the fix cycle. Use when user says "QA session",
-  "report a bug", "something's broken", "file issues", or wants to capture problems
-  conversationally.
+description: Interactive QA session where user reports bugs or issues conversationally, and the agent files GitHub issues. Explores the codebase in the background for context and domain language. Use when user wants to report bugs, do QA, file issues conversationally, or mentions "QA session".
 ---
 
 # QA Session
 
-Run an interactive QA session. The user describes problems they're encountering. You clarify, explore the codebase for context, and file issues that are durable, user-focused, and use the project's domain language.
-
-## When to use this skill
-
-This is the feedback loop. It fires AFTER code ships — not during planning, not during domain modeling, not during TDD. You built something, it's running, and now you're finding what's wrong. The issues this skill creates feed back into `grill-me` → `to-prd` → `to-issues` → `tdd` for the fix cycle.
-
-```
-BUILD LOOP:      domain-model → grill-me → to-prd → to-issues → tdd → ship
-FEEDBACK LOOP:                                               qa → (back to grill-me)
-```
+Run an interactive QA session. The user describes problems they're encountering. You clarify, explore the codebase for context, and file GitHub issues that are durable, user-focused, and use the project's domain language.
 
 ## For each issue the user raises
 
@@ -59,11 +44,9 @@ Keep as a single issue when:
 - It's one behavior that's wrong in one place
 - The symptoms are all caused by the same root behavior
 
-### 4. File the issue(s)
+### 4. File the GitHub issue(s)
 
-**If `gh` is available and the repo uses GitHub issues**, create each issue using `gh issue create`. Do NOT ask the user to review first — just file and share URLs.
-
-**Otherwise**, write to `plans/issues/` as numbered markdown files (`001-<slug>.md`, `002-<slug>.md`, etc.). Scan for existing files and increment the number.
+Create issues with `gh issue create`. Do NOT ask the user to review first — just file and share URLs.
 
 Issues must be **durable** — they should still make sense after major refactors. Write from the user's perspective.
 
@@ -88,7 +71,7 @@ Use this template:
 
 ## Additional context
 
-[Any extra observations from the user or from codebase exploration that help frame the issue]
+[Any extra observations from the user or from codebase exploration that help frame the issue — e.g. "this only happens when using the Docker layer, not the filesystem layer" — use domain language but don't cite files]
 ```
 
 #### For a breakdown (multiple issues)
@@ -128,7 +111,7 @@ Or "None — can start immediately" if no blockers.
 When creating a breakdown:
 
 - **Prefer many thin issues over few thick ones** — each should be independently fixable and verifiable
-- **Mark blocking relationships honestly** — if issue B genuinely can't be tested until issue A is fixed, say so
+- **Mark blocking relationships honestly** — if issue B genuinely can't be tested until issue A is fixed, say so. If they're independent, mark both as "None — can start immediately"
 - **Create issues in dependency order** so you can reference real issue numbers in "Blocked by"
 - **Maximize parallelism** — the goal is that multiple people (or agents) can grab different issues simultaneously
 

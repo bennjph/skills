@@ -1,10 +1,6 @@
 ---
 name: to-prd
-description: >
-  Synthesize the current conversation context into a structured PRD. Does NOT interview
-  the user — just captures what's already been decided. Use after grill-me or domain-model
-  sessions when decisions have converged and the user wants the plan written down.
-  Use when user says "write the PRD", "create a PRD", "document this plan", or "to PRD".
+description: Turn the current conversation context into a PRD and submit it as a GitHub issue. Use when user wants to create a PRD from the current context.
 ---
 
 This skill takes the current conversation context and codebase understanding and produces a PRD. Do NOT interview the user — just synthesize what you already know.
@@ -19,16 +15,9 @@ A deep module (as opposed to a shallow module) is one which encapsulates a lot o
 
 Check with the user that these modules match their expectations. Check with the user which modules they want tests written for.
 
-3. Write the PRD using the template below.
+3. Write the PRD using the template below and submit it as a GitHub issue.
 
-4. Submit the PRD:
-   - Write to `plans/<slug>.md` (or `docs/modules/<project>/` if it's project-specific), following the repo's AGENTS.md conventions.
-   - The PRD is a durable artifact that stays in the repo. Do not create it as a GitHub issue — later skills (to-issues, verify, qa) need a stable local file to reference.
-
-## PRD Template
-
-```md
-# {Feature Name}
+<prd-template>
 
 ## Problem Statement
 
@@ -42,16 +31,17 @@ The solution to the problem, from the user's perspective.
 
 A LONG, numbered list of user stories. Each user story should be in the format of:
 
-1. As a [role], I want a [feature], so that [benefit]
+1. As an <actor>, I want a <feature>, so that <benefit>
 
-Example:
+<user-story-example>
 1. As a mobile bank customer, I want to see balance on my accounts, so that I can make better informed decisions about my spending
+</user-story-example>
 
 This list of user stories should be extremely extensive and cover all aspects of the feature.
 
 ## Implementation Decisions
 
-A list of implementation decisions that were made. Include:
+A list of implementation decisions that were made. This can include:
 
 - The modules that will be built/modified
 - The interfaces of those modules that will be modified
@@ -65,7 +55,7 @@ Do NOT include specific file paths or code snippets. They may end up being outda
 
 ## Testing Decisions
 
-A list of testing decisions. Include:
+A list of testing decisions that were made. Include:
 
 - A description of what makes a good test (only test external behavior, not implementation details)
 - Which modules will be tested
@@ -73,9 +63,10 @@ A list of testing decisions. Include:
 
 ## Out of Scope
 
-What is explicitly NOT covered by this PRD.
+A description of the things that are out of scope for this PRD.
 
 ## Further Notes
 
 Any further notes about the feature.
-```
+
+</prd-template>

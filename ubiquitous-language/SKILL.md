@@ -1,11 +1,7 @@
 ---
 name: ubiquitous-language
-description: >
-  Extract a DDD-style ubiquitous language glossary from the current conversation,
-  flagging ambiguities and proposing canonical terms. Saves to UBIQUITOUS_LANGUAGE.md.
-  Use when user wants to define domain terms, build a glossary, harden terminology,
-  create a ubiquitous language, mentions "domain model", "DDD", "define our terms",
-  "glossary", or "term confusion".
+description: Extract a DDD-style ubiquitous language glossary from the current conversation, flagging ambiguities and proposing canonical terms. Saves to UBIQUITOUS_LANGUAGE.md. Use when user wants to define domain terms, build a glossary, harden terminology, create a ubiquitous language, or mentions "domain model" or "DDD".
+disable-model-invocation: true
 ---
 
 # Ubiquitous Language
@@ -20,7 +16,7 @@ Extract and formalize domain terminology from the current conversation into a co
    - Different words used for the same concept (synonyms)
    - Vague or overloaded terms
 3. **Propose a canonical glossary** with opinionated term choices
-4. **Write to `UBIQUITOUS_LANGUAGE.md`** — default to working directory, but respect repo structure conventions when an `AGENTS.md` or `.cursor/rules/` is present (e.g., place under `docs/shared/` or `docs/modules/<project>/` rather than repo root)
+4. **Write to `UBIQUITOUS_LANGUAGE.md`** in the working directory using the format below
 5. **Output a summary** inline in the conversation
 
 ## Output Format
@@ -71,6 +67,20 @@ Write a `UBIQUITOUS_LANGUAGE.md` file with this structure:
 - **Only include domain terms.** Skip generic programming concepts (array, function, endpoint) unless they have domain-specific meaning.
 - **Group terms into multiple tables** when natural clusters emerge (e.g. by subdomain, lifecycle, or actor). Each group gets its own heading and table. If all terms belong to a single cohesive domain, one table is fine — don't force groupings.
 - **Write an example dialogue.** A short conversation (3-5 exchanges) between a dev and a domain expert that demonstrates how the terms interact naturally. The dialogue should clarify boundaries between related concepts and show terms being used precisely.
+
+<example>
+
+## Example dialogue
+
+> **Dev:** "How do I test the **sync service** without Docker?"
+
+> **Domain expert:** "Provide the **filesystem layer** instead of the **Docker layer**. It implements the same **Sandbox service** interface but uses a local directory as the **sandbox**."
+
+> **Dev:** "So **sync-in** still creates a **bundle** and unpacks it?"
+
+> **Domain expert:** "Exactly. The **sync service** doesn't know which layer it's talking to. It calls `exec` and `copyIn` — the **filesystem layer** just runs those as local shell commands."
+
+</example>
 
 ## Re-running
 

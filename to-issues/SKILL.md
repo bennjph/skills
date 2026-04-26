@@ -1,16 +1,11 @@
 ---
 name: to-issues
-description: >
-  Break a plan, spec, or PRD into independently-grabbable work slices using tracer-bullet
-  vertical cuts. Each slice cuts through all layers end-to-end. Classifies slices as HITL
-  (needs human interaction) or AFK (agent can implement alone). Use after to-prd when the
-  user wants to break work into grabbable tickets. Use when user says "break into issues",
-  "create implementation tickets", "slice this plan", or "to issues".
+description: Break a plan, spec, or PRD into independently-grabbable GitHub issues using tracer-bullet vertical slices. Use when user wants to convert a plan into issues, create implementation tickets, or break down work into issues.
 ---
 
 # To Issues
 
-Break a plan into independently-grabbable work slices using vertical slices (tracer bullets).
+Break a plan into independently-grabbable GitHub issues using vertical slices (tracer bullets).
 
 ## Process
 
@@ -24,17 +19,15 @@ If you have not already explored the codebase, do so to understand the current s
 
 ### 3. Draft vertical slices
 
-Break the plan into **tracer bullet** slices. Each slice is a thin vertical cut that cuts through ALL integration layers end-to-end, NOT a horizontal slice of one layer.
+Break the plan into **tracer bullet** issues. Each issue is a thin vertical slice that cuts through ALL integration layers end-to-end, NOT a horizontal slice of one layer.
 
-Slices may be 'HITL' or 'AFK':
-- **HITL** — requires human interaction (architectural decision, design review, approval)
-- **AFK** — can be implemented and merged without human interaction
+Slices may be 'HITL' or 'AFK'. HITL slices require human interaction, such as an architectural decision or a design review. AFK slices can be implemented and merged without human interaction. Prefer AFK over HITL where possible.
 
-Prefer AFK over HITL where possible.
-
+<vertical-slice-rules>
 - Each slice delivers a narrow but COMPLETE path through every layer (schema, API, UI, tests)
 - A completed slice is demoable or verifiable on its own
 - Prefer many thin slices over few thick ones
+</vertical-slice-rules>
 
 ### 4. Quiz the user
 
@@ -54,20 +47,16 @@ Ask the user:
 
 Iterate until the user approves the breakdown.
 
-### 5. Create the work items
+### 5. Create the GitHub issues
 
-Create slices in dependency order (blockers first) so you can reference real numbers in "Blocked by" fields.
+For each approved slice, create a GitHub issue using `gh issue create`. Use the issue body template below.
 
-**If `gh` is available and the repo uses GitHub issues**, create each slice as a GitHub issue using `gh issue create`.
+Create issues in dependency order (blockers first) so you can reference real issue numbers in the "Blocked by" field.
 
-**Otherwise**, write to `plans/issues/` as numbered markdown files (`001-<slug>.md`, `002-<slug>.md`, etc.). Scan for existing files and increment the number.
-
-## Issue/slice template
-
-```md
+<issue-template>
 ## Parent
 
-# (if the source was a GitHub issue, otherwise omit this section)
+#<parent-issue-number> (if the source was a GitHub issue, otherwise omit this section)
 
 ## What to build
 
@@ -79,20 +68,12 @@ A concise description of this vertical slice. Describe the end-to-end behavior, 
 - [ ] Criterion 2
 - [ ] Criterion 3
 
-## How to verify
-
-Evidence type: [screenshots / video / GIF / structured output / manual walkthrough]
-Review method: [what the human should check when reviewing the evaluation pack]
-
-This field is read by the `/verify` skill to determine how to produce the evaluation pack for this slice.
-
 ## Blocked by
 
-- Blocked by #<number> (if any)
+- Blocked by #<issue-number> (if any)
 
 Or "None - can start immediately" if no blockers.
-```
 
-When drafting slices, propose a reasonable "How to verify" for each based on what the slice builds. The user can adjust during the quiz step.
+</issue-template>
 
 Do NOT close or modify any parent issue.

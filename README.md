@@ -1,12 +1,10 @@
 # Cursor Skills
 
-A collection of agent skills for [Cursor](https://cursor.sh) that form a structured build-verify-learn loop. Each skill is a self-contained `SKILL.md` that the agent reads on demand via slash command.
+My personal collection of agent skills staright from my .cursor directory. Shaped and inspired by https://github.com/mattpocock/skills/tree/main and practices form others, modified and used fo rmy context
 
 ## Quick Start
+Drop the link to your coding agent of your choice with your customisation instructions
 
-1. Clone this repo into `~/.cursor/skills/` (or symlink it there)
-2. In a Cursor chat, type the slash command for the skill you want (e.g. `/tdd`, `/grill-me`)
-3. The agent reads the skill file and follows its instructions for that session
 
 ## Skills
 

@@ -1,10 +1,6 @@
 ---
 name: design-an-interface
-description: >
-  Generate multiple radically different interface designs for a module using parallel
-  sub-agents. Use when user wants to design an API, explore interface options, compare
-  module shapes, or mentions "design it twice", "interface design", "API design",
-  or "compare approaches".
+description: Generate multiple radically different interface designs for a module using parallel sub-agents. Use when user wants to design an API, explore interface options, compare module shapes, or mentions "design it twice".
 ---
 
 # Design an Interface
@@ -77,12 +73,6 @@ Often the best design combines insights from multiple options. Ask:
 
 - "Which design best fits your primary use case?"
 - "Any elements from other designs worth incorporating?"
-
-### 6. Persist the comparison
-
-Write the interface comparison to `plans/<module-slug>-interface-comparison.md`. Include all designs presented, the trade-off analysis, and which design was chosen (or what synthesis was agreed on).
-
-This is a durable artifact. Later skills (`to-prd`, `to-issues`) reference it when defining the module's interface contract.
 
 ## Evaluation Criteria
 
