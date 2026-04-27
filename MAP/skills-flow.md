@@ -105,6 +105,9 @@
 │                          AD-HOC (anytime)                                 │
 │                                                                          │
 │  /caveman              Compressed chat mode (~75% fewer tokens)          │
+│  /design-motion-principles  Context-aware UI motion audit                │
+│  /emil-design-eng      UI polish, component craft, animation critique    │
+│  /familiar             Recent screen/session context from Familiar stills │
 │  /ubiquitous-language  Batch glossary extraction → UBIQUITOUS_LANGUAGE.md│
 │  /zoom-out             Code context map — neighbors, data flow, deps     │
 │                                                                          │
@@ -217,5 +220,9 @@ The postmortem writes to persistent files that the agent reads automatically on 
 ---
 
 ## Change Log
+
+- 2026-04-27 — Added `/familiar` to ad-hoc skills and documented that global sync targets both Codex and Cursor while excluding `wip-presentation/`.
+- 2026-04-27 — Added `/emil-design-eng` to ad-hoc skills for UI polish and animation critique.
+- 2026-04-27 — Added `/design-motion-principles` to ad-hoc skills for context-aware motion audits.
 
 - 2026-04-19 — Updated: `/to-issues` now shows "How to verify" pre-commit step. `/tdd` now shows visual checkpoint after GREEN. `/verify` and `/postmortem` are now created (not pending). All flow diagrams reflect the verification-first cycle.

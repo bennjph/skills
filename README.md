@@ -1,9 +1,15 @@
-# Cursor Skills
+# Codex and Cursor Skills
 
-My personal collection of agent skills staright from my .cursor directory. Shaped and inspired by https://github.com/mattpocock/skills/tree/main and practices form others, modified and used fo rmy context
+My personal collection of agent skills for Codex and Cursor. Shaped and inspired by https://github.com/mattpocock/skills/tree/main and practices from others, modified and used for my context.
 
 ## Quick Start
-Drop the link to your coding agent of your choice with your customisation instructions
+
+Install the non-WIP skill folders into both global agent skill locations:
+
+- Codex: `~/.codex/skills/`
+- Cursor: `~/.cursor/skills/`
+
+`wip-presentation/` is intentionally excluded until the presentation/PPT generation work is ready.
 
 
 ## Skills
@@ -55,6 +61,9 @@ Anytime. No fixed position in the flow.
 | Command | Purpose | Trigger |
 |---|---|---|
 | `/caveman` | Compressed chat mode (~75% fewer tokens) | Want terse output |
+| `/design-motion-principles` | Context-aware motion and interaction design audit | Reviewing UI animations and transitions |
+| `/emil-design-eng` | UI polish, component craft, and animation review | Need design-engineering taste checks |
+| `/familiar` | Reconstruct recent on-screen work from Familiar stills | Need recent screen/session context |
 | `/ubiquitous-language` | Batch extract glossary terms | Term confusion in conversation |
 | `/zoom-out` | One-level-up code context map | Deep in a file, lost the neighborhood |
 
@@ -78,26 +87,33 @@ The full ASCII flow map with verification-first detail lives in [`MAP/skills-flo
 ## Principles
 
 - **Verification-first.** Define how to verify before building. Each work slice carries its own "How to verify" field.
-- **Compound learning.** Postmortems write back to `AGENTS.md` and `.cursor/rules/`. The repo gets smarter every session.
+- **Compound learning.** Postmortems write back to persistent repo instructions. The repo gets smarter every session.
 - **Tracer-bullet cuts.** Every slice goes end-to-end. No horizontal layer-by-layer work.
 - **Human at the seams.** Skills classify work as HITL (human-in-the-loop) or AFK (agent can run alone). Humans approve learning proposals before they're applied.
 
 ## Structure
 
 ```
-~/.cursor/skills/
+skills repo source/
 ├── MAP/                              # Human reference maps
 │   ├── skills-flow.md                # ASCII flow diagrams
 │   └── skills-readme.md              # Detailed skill inventory
 ├── caveman/SKILL.md
 ├── design-an-interface/SKILL.md
+├── design-motion-principles/
+│   ├── SKILL.md
+│   └── references/
 ├── domain-model/SKILL.md
 │   ├── CONTEXT-FORMAT.md
 │   └── ADR-FORMAT.md
+├── emil-design-eng/SKILL.md
+├── familiar/SKILL.md
 ├── grill-me/SKILL.md
 ├── improve-codebase-architecture/
 │   ├── SKILL.md
-│   └── REFERENCE.md
+│   ├── DEEPENING.md
+│   ├── INTERFACE-DESIGN.md
+│   └── LANGUAGE.md
 ├── postmortem/SKILL.md
 ├── prototype-artifact/SKILL.md
 ├── prototype-data/SKILL.md
@@ -113,7 +129,8 @@ The full ASCII flow map with verification-first detail lives in [`MAP/skills-flo
 ├── to-prd/SKILL.md
 ├── ubiquitous-language/SKILL.md
 ├── verify/SKILL.md
-└── zoom-out/SKILL.md
+├── zoom-out/SKILL.md
+└── wip-presentation/                 # Excluded from global sync for now
 ```
 
 ## License

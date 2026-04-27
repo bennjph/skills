@@ -2,7 +2,9 @@
 
 > This folder is for the human. It holds reference maps of the skill system — what each skill does, when to use it, and how they connect.
 
-All skills live in `~/.cursor/skills/`. Each is triggered by slash command (e.g. `/grill-me`, `/tdd`). The agent reads the skill file and follows its instructions for the duration of that session.
+Synced skills live in both `~/.codex/skills/` and `~/.cursor/skills/`. Each is triggered by slash command or skill name where the agent supports skills. The agent reads the skill file and follows its instructions for the duration of that session.
+
+`wip-presentation/` is not part of the global sync yet. Keep it as a repo-local WIP area until the presentation/PPT generation skill is ready.
 
 ---
 
@@ -122,11 +124,23 @@ Anytime. No fixed position in the flow.
 
 Drops filler, articles, and pleasantries. Full technical accuracy, ~75% fewer tokens. Chat output only — file output follows AGENTS.md Writing Doctrine.
 
-### 14. `/ubiquitous-language` — Batch glossary extraction
+### 14. `/emil-design-eng` — Design engineering polish
+
+Reviews UI polish, component craft, animation choices, motion timing, and the invisible details that make interfaces feel right. Best for frontend design critique and implementation guidance.
+
+### 15. `/design-motion-principles` — Motion design audit
+
+Audits UI motion through Emil Kowalski, Jakub Krehel, and Jhey Tompkins lenses. Starts with project context and motion gap reconnaissance, then uses bundled references for accessibility, performance, common mistakes, and report formatting.
+
+### 16. `/familiar` — Recent screen/session context
+
+Reads Familiar stills markdown and clipboard captures to reconstruct recent on-screen activity, summarize status, recover decisions, or plan from recent work context.
+
+### 17. `/ubiquitous-language` — Batch glossary extraction
 
 Extract domain terms from the conversation into `UBIQUITOUS_LANGUAGE.md` at the repo root. Lighter than `/domain-model` for quick glossary snapshots.
 
-### 15. `/zoom-out` — Code context map
+### 18. `/zoom-out` — Code context map
 
 One-level-up view of where a code area fits. Inbound dependencies, outbound calls, sibling modules, data flow. Useful when you're deep in a file and need to remember the neighborhood.
 
@@ -134,26 +148,34 @@ One-level-up view of where a code area fits. Inbound dependencies, outbound call
 
 ## Skill File Locations
 
-| #   | Skill                         | Directory                                         | Files                                                                                |
-| --- | ----------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| 1   | caveman                       | `~/.cursor/skills/caveman/`                       | SKILL.md                                                                             |
-| 2   | ubiquitous-language           | `~/.cursor/skills/ubiquitous-language/`           | SKILL.md                                                                             |
-| 3   | zoom-out                      | `~/.cursor/skills/zoom-out/`                      | SKILL.md                                                                             |
-| 4   | domain-model                  | `~/.cursor/skills/domain-model/`                  | SKILL.md, CONTEXT-FORMAT.md, ADR-FORMAT.md                                           |
-| 5   | grill-me                      | `~/.cursor/skills/grill-me/`                      | SKILL.md                                                                             |
-| 6   | prototype-data                | `~/.cursor/skills/prototype-data/`                | SKILL.md                                                                             |
-| 7   | prototype-artifact            | `~/.cursor/sskills/prototype-artifact/`           | SKILL.md                                                                             |
-| 8   | to-prd                        | `~/.cursor/skills/to-prd/`                        | SKILL.md                                                                             |
-| 9   | to-issues                     | `~/.cursor/skills/to-issues/`                     | SKILL.md                                                                             |
-| 10  | tdd                           | `~/.cursor/skills/tdd/`                           | SKILL.md, deep-modules.md, interface-design.md, mocking.md, refactoring.md, tests.md |
-| 11  | verify                        | `~/.cursor/skills/verify/`                        | SKILL.md                                                                             |
-| 12  | postmortem                    | `~/.cursor/skills/postmortem/`                    | SKILL.md                                                                             |
-| 13  | qa                            | `~/.cursor/skills/qa/`                            | SKILL.md                                                                             |
-| 14  | improve-codebase-architecture | `~/.cursor/skills/improve-codebase-architecture/` | SKILL.md, REFERENCE.md                                                               |
-| 15  | design-an-interface           | `~/.cursor/skills/design-an-interface/`           | SKILL.md                                                                             |
+| #   | Skill                         | Installed directory suffix                     | Files                                                                                |
+| --- | ----------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------ |
+| 1   | caveman                       | `caveman/`                                     | SKILL.md                                                                             |
+| 2   | ubiquitous-language           | `ubiquitous-language/`                         | SKILL.md                                                                             |
+| 3   | zoom-out                      | `zoom-out/`                                    | SKILL.md                                                                             |
+| 4   | domain-model                  | `domain-model/`                                | SKILL.md, CONTEXT-FORMAT.md, ADR-FORMAT.md                                           |
+| 5   | grill-me                      | `grill-me/`                                    | SKILL.md                                                                             |
+| 6   | prototype-data                | `prototype-data/`                              | SKILL.md                                                                             |
+| 7   | prototype-artifact            | `prototype-artifact/`                          | SKILL.md                                                                             |
+| 8   | to-prd                        | `to-prd/`                                      | SKILL.md                                                                             |
+| 9   | to-issues                     | `to-issues/`                                   | SKILL.md                                                                             |
+| 10  | tdd                           | `tdd/`                                         | SKILL.md, deep-modules.md, interface-design.md, mocking.md, refactoring.md, tests.md |
+| 11  | verify                        | `verify/`                                      | SKILL.md                                                                             |
+| 12  | postmortem                    | `postmortem/`                                  | SKILL.md                                                                             |
+| 13  | qa                            | `qa/`                                          | SKILL.md                                                                             |
+| 14  | improve-codebase-architecture | `improve-codebase-architecture/`               | SKILL.md, DEEPENING.md, INTERFACE-DESIGN.md, LANGUAGE.md                             |
+| 15  | design-an-interface           | `design-an-interface/`                         | SKILL.md                                                                             |
+| 16  | familiar                      | `familiar/`                                    | SKILL.md                                                                             |
+| 17  | emil-design-eng               | `emil-design-eng/`                             | SKILL.md                                                                             |
+| 18  | design-motion-principles      | `design-motion-principles/`                    | SKILL.md, references/*.md                                                            |
+
+Install each suffix under both `~/.codex/skills/` and `~/.cursor/skills/`.
 
 ---
 
 ## Change Log
 
 - 2026-04-19 — Created `/verify` and `/postmortem` skills. Enhanced `/to-issues` with "How to verify" field. Enhanced `/tdd` with visual checkpoint after GREEN. Updated skill file locations table (all 15 skills now exist).
+- 2026-04-27 — Synced non-WIP repo skills into Codex and Cursor global skill folders. Added `/familiar` to both install targets. Kept `wip-presentation/` excluded until the presentation/PPT skill is ready.
+- 2026-04-27 — Added upstream `/emil-design-eng` from emilkowalski/skill to the repo and Codex global skill folder.
+- 2026-04-27 — Added upstream `/design-motion-principles` from kylezantos/design-motion-principles to the repo and Codex global skill folder.
