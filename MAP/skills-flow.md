@@ -10,106 +10,77 @@
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                          BUILD LOOP                                      │
 │                                                                          │
+│  ┌──────────────────┐                                                  │
+│  │ /grill-with-docs  │  Converge plan + domain language                 │
+│  │                  │  CONTEXT.md, ADRs, one question at a time         │
+│  └──────┬───────────┘                                                  │
+│         ▼                                                              │
+│  ┌──────────────────┐      ┌─────────────────────┐                     │
+│  │ /prototype-data   │ ──── │ /prototype-artifact  │  (optional)       │
+│  │ "Define the data" │      │ "Visualize it"       │                     │
+│  └──────┬───────────┘      └──────────┬──────────┘                     │
+│         ▼                             │                                │
+│         └──────────┬──────────────────┘                                │
+│                    ▼                                                   │
+│  ┌──────────────┐                                                      │
+│  │    /to-prd    │  "Write it down" → issue tracker                    │
+│  └──────┬───────┘                                                      │
+│         ▼                                                              │
+│  ┌──────────────┐                                                      │
+│  │  /to-issues   │  Vertical slices + "How to verify"                  │
+│  └──────┬───────┘                                                      │
+│         ▼                                                              │
+│  ┌──────────────┐                                                      │
+│  │     /tdd      │  Red → Green → Refactor                             │
+│  └──────┬───────┘                                                      │
+│         │                                                              │
+└─────────┼──────────────────────────────────────────────────────────────┘
+          ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│                       VERIFICATION LOOP                                  │
+│                                                                          │
 │  ┌──────────────┐                                                        │
-│  │ /domain-model │  "What IS this world?"                                │
-│  │              │   CONTEXT.md, ADRs, glossary                           │
+│  │   /verify     │  Evidence pack → HTML → human review                 │
 │  └──────┬───────┘                                                        │
 │         ▼                                                                │
 │  ┌──────────────┐                                                        │
-│  │   /grill-me   │  "What do we BUILD?"                                  │
-│  │              │   One-at-a-time interrogation                          │
-│  └──────┬───────┘                                                        │
-│         ▼                                                                │
-│  ┌──────────────────┐      ┌─────────────────────┐                       │
-│  │ /prototype-data   │ ──── │ /prototype-artifact  │  (optional pair)     │
-│  │ "Define the data" │      │ "Visualize it"       │                      │
-│  └──────┬───────────┘      └──────────┬──────────┘                       │
-│         ▼                             │                                  │
-│         └──────────┬──────────────────┘                                  │
-│                    ▼                                                     │
-│  ┌──────────────┐                                                        │
-│  │    /to-prd    │  "Write it down"                                      │
-│  │              │   Structured PRD from converged decisions              │
-│  └──────┬───────┘                                                        │
-│         ▼                                                                │
-│  ┌──────────────┐                                                        │
-│  │  /to-issues   │  "Break into work"                                    │
-│  │              │   Vertical slices, each with "How to verify" field     │
-│  └──────┬───────┘                                                        │
-│         ▼                                                                │
-│  ┌──────────────┐                                                        │
-│  │     /tdd      │  "Build it"                                           │
-│  │              │   Red → Green → Refactor (one test at a time)          │
-│  │              │   Visual checkpoint after each GREEN                   │
+│  │ /postmortem   │  Compound learnings into AGENTS.md / rules           │
 │  └──────┬───────┘                                                        │
 │         │                                                                │
 └─────────┼────────────────────────────────────────────────────────────────┘
           ▼
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                       VERIFICATION LOOP                                   │
-│                       (manual /slash commands)                            │
+│                     FEEDBACK + MAINTENANCE                               │
 │                                                                          │
-│  ┌──────────────┐                                                        │
-│  │   /verify     │  "Prove it works"                                     │
-│  │              │   1. Generate evidence pack (screenshots/video/GIF)    │
-│  │              │   2. Agent self-reviews output                         │
-│  │              │   3. Fix issues found, regenerate                     │
-│  │              │   4. Package into HTML report                          │
-│  │              │   5. Human reviews, adds comments                     │
-│  └──────┬───────┘                                                        │
-│         ▼                                                                │
-│  ┌──────────────┐                                                        │
-│  │ /postmortem   │  "What did we learn?"                                 │
-│  │              │   1. Reflect on session transcript                     │
-│  │              │   2. Collect human input                               │
-│  │              │   3. Identify DO / DON'T / WHEN patterns              │
-│  │              │   4. Propose edits to AGENTS.md or .cursor/rules/     │
-│  │              │   5. Human approves each change                       │
-│  │              │   6. Apply — repo gets smarter for next run           │
-│  └──────┬───────┘                                                        │
-│         │                                                                │
-└─────────┼────────────────────────────────────────────────────────────────┘
-          ▼
-┌─────────────────────────────────────────────────────────────────────────┐
-│                        FEEDBACK LOOP                                      │
-│                                                                          │
-│  ┌──────────────┐                                                        │
-│  │     /qa       │  "What's broken?"                                     │
-│  │              │   Conversational bug reporting                         │
-│  │              │   Files durable issues                                 │
-│  └──────┬───────┘                                                        │
-│         │                                                                │
-│         └──────────────────────────────────────┐                         │
-│                                                ▼                         │
-│                                        Back to /grill-me                  │
-│                                        for the fix cycle                  │
+│  /triage        Issue state machine → agent briefs / needs-info       │
+│  /diagnose      Hard bugs: repro loop → fix → regression                │
+│        └──────────────────────────────┐                                 │
+│                                       ▼                                 │
+│                        Back to /grill-with-docs or /tdd as needed       │
 │                                                                          │
 └─────────────────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                        RETROFIT LOOP                                      │
+│                        RETROFIT LOOP                                     │
 │                                                                          │
 │  ┌──────────────────────────────┐                                        │
-│  │ /improve-codebase-architecture │  "What's shallow?"                   │
-│  │                              │   Survey for architectural friction   │
-│  └──────────────┬───────────────┘                                        │
-│                 ▼                                                        │
-│  ┌──────────────────────────────┐                                        │
-│  │    /design-an-interface       │  "Design competing boundaries"       │
-│  │                              │   3+ radical interface designs        │
+│  │ /improve-codebase-architecture │  Shallow modules → deepening        │
 │  └──────────────────────────────┘                                        │
 │                                                                          │
 └─────────────────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                          AD-HOC (anytime)                                 │
+│  SETUP (once per repo)     /setup-matt-pocock-skills                    │
+└─────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│                          AD-HOC (anytime)                                │
 │                                                                          │
-│  /caveman              Compressed chat mode (~75% fewer tokens)          │
-│  /design-motion-principles  Context-aware UI motion audit                │
-│  /emil-design-eng      UI polish, component craft, animation critique    │
-│  /familiar             Recent screen/session context from Familiar stills │
-│  /ubiquitous-language  Batch glossary extraction → UBIQUITOUS_LANGUAGE.md│
-│  /zoom-out             Code context map — neighbors, data flow, deps     │
+│  /caveman                  Compressed chat mode                         │
+│  /design-motion-principles Motion audit                                 │
+│  /emil-design-eng          UI polish / craft                            │
+│  /familiar                 Familiar stills / recent context            │
+│  /zoom-out                 Map module + callers (domain vocabulary)      │
 │                                                                          │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
@@ -221,6 +192,7 @@ The postmortem writes to persistent files that the agent reads automatically on 
 
 ## Change Log
 
+- 2026-04-29 — Replaced `/domain-model` + `/grill-me` with `/grill-with-docs`; removed `/qa`, `/design-an-interface`, `/ubiquitous-language` from flow; added `/triage`, `/diagnose`, `/setup-matt-pocock-skills`.
 - 2026-04-27 — Added `/familiar` to ad-hoc skills and documented that global sync targets both Codex and Cursor while excluding `wip-presentation/`.
 - 2026-04-27 — Added `/emil-design-eng` to ad-hoc skills for UI polish and animation critique.
 - 2026-04-27 — Added `/design-motion-principles` to ad-hoc skills for context-aware motion audits.

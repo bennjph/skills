@@ -1,22 +1,21 @@
 # Cross-Agent Skills
 
-My personal collection of agent skills for Pi, Codex, Cursor, Droid coding agents, and future coding-agent surfaces. Shaped and inspired by https://github.com/mattpocock/skills/tree/main and practices from others, modified and used for my context.
+My personal collection of agent skills for Pi, Codex, Cursor, Droid coding agents, and future coding-agent surfaces. Matt-derived engineering skills **mirror** [mattpocock/skills](https://github.com/mattpocock/skills) at the pinned revision below. Other skills in this repo are local extensions or third-party imports, modified for my context.
 
 This repo is the local source of truth. Global agent installs should be treated as deploy targets, not places to edit by hand.
 
 ## Upstream Status
 
-Last checked against `mattpocock/skills` on 2026-04-28.
+Last synced with `mattpocock/skills` on **2026-04-29** at commit **`f71bb975bfae2dc0d31c529c7dd4a8479ecc3748`**.
 
-- Upstream latest checked commit: `c21cf6ec93b4a25a5118a1a600ebb777e50d6c2e`
-- Upstream now groups skills under `engineering/`, `productivity/`, `misc/`, `personal/`, and `deprecated/`
-- Upstream renamed the active domain-doc grilling skill to `grill-with-docs`; this repo currently keeps the local command name `/domain-model`
-- Local folders stay flat for now so existing Codex and Cursor installs keep working
-- Upstream-deprecated skills are marked below before removal, because this repo has local workflows that may still depend on them
+- Upstream groups skills under `skills/engineering/`, `skills/productivity/`, `skills/misc/`, `skills/personal/`, and `skills/deprecated/`.
+- This repo keeps **flat top-level folders** (e.g. `grill-with-docs/`, `tdd/`) so existing Codex and Cursor installs stay simple.
+- **Mirrored from Matt (engineering + productivity):** `grill-with-docs`, `improve-codebase-architecture`, `tdd`, `to-issues`, `to-prd`, `zoom-out`, `caveman`, `diagnose`, `triage`, `setup-matt-pocock-skills`.
+- **Removed from this repo** (deprecated upstream): `design-an-interface`, `qa`, `ubiquitous-language`. **`domain-model`** removed; its workflow is superseded by **`grill-with-docs`** (and `CONTEXT-FORMAT.md` / `ADR-FORMAT.md` beside that skill).
 
 ## Quick Start
 
-Install the non-WIP, non-deprecated skill folders into each global agent skill location.
+Install the non-WIP skill folders into each global agent skill location.
 
 - Codex: `~/.codex/skills/`
 - Cursor: `~/.cursor/skills/`
@@ -27,115 +26,93 @@ Install the non-WIP, non-deprecated skill folders into each global agent skill l
 
 When adding another machine or agent, copy from this repo outward. Do not reconcile by editing the installed global copy first.
 
+**Before** using `to-issues`, `to-prd`, `triage`, or other issue-tracker-aware skills on a new repo, run **`/setup-matt-pocock-skills`** once so `AGENTS.md` or `CLAUDE.md` and `docs/agents/` describe your tracker and triage labels.
+
 ## Skills
 
-### Engineering
-
-Core code-work skills. These are closest to upstream's active `engineering` bucket.
+### Engineering (Matt-mirrored)
 
 | Command | Purpose | Trigger |
 |---|---|---|
-| `/domain-model` | Define the domain — glossary, ADRs, CONTEXT.md. Local name for upstream `grill-with-docs` behavior | Starting a new project or module |
-| `/to-prd` | Synthesize decisions into a PRD | Decisions converged, time to spec |
-| `/to-issues` | Slice PRD into vertical work tickets | Have a PRD, ready to break into work |
-| `/tdd` | Red-green-refactor build loop | Have issues, time to code |
-| `/improve-codebase-architecture` | Survey for shallow modules and friction | Inherited a codebase |
-| `/zoom-out` | One-level-up code context map | Deep in a file, lost the neighborhood |
+| `/setup-matt-pocock-skills` | Scaffold `docs/agents/*` + `## Agent skills` for tracker and domain docs | First use of issue-tracker skills on a repo |
+| `/grill-with-docs` | Grill a plan against `CONTEXT.md` / ADRs; update glossary and docs inline | Stress-test a plan; align language and decisions |
+| `/to-prd` | Turn conversation + codebase understanding into a PRD on the issue tracker | Ready to publish a PRD |
+| `/to-issues` | Break a plan into vertical tracer-bullet issues | Have a spec; need tickets |
+| `/triage` | Move issues through triage state machine | Triage or prep issues for agents |
+| `/tdd` | Red-green-refactor with vertical slices | Building or fixing with tests |
+| `/improve-codebase-architecture` | Find deepening opportunities; align with CONTEXT + ADRs | Refactor / architecture survey |
+| `/diagnose` | Reproduce → hypothesise → instrument → fix for hard bugs | Broken behaviour or perf regression |
+| `/zoom-out` | One-level-up map using domain vocabulary | Lost in the weeds |
 
-### Local Extensions
+### Local extensions
 
-These are local workflow skills that do not currently come from `mattpocock/skills`, but are part of this repo's operating system.
-
-| Command | Purpose | Trigger |
-|---|---|---|
-| `/prototype-data` | Generate structured JSON data model | Need to define what the feature IS |
-| `/prototype-artifact` | Visualize data as flowcharts, mockups | Have JSON data, want visual reference |
-| `/verify` | Generate evidence pack — prove it works | After building a feature |
-| `/postmortem` | Compound learnings into persistent rules | After a session wraps up |
-
-### Productivity And Design
-
-Anytime. No fixed position in the flow.
+These are **not** from Matt’s engineering set but are part of this repo’s operating system.
 
 | Command | Purpose | Trigger |
 |---|---|---|
-| `/caveman` | Compressed chat mode (~75% fewer tokens) | Want terse output |
-| `/grill-me` | Interrogate a plan — one question at a time | Have a rough idea, need to converge |
-| `/design-motion-principles` | Context-aware motion and interaction design audit | Reviewing UI animations and transitions |
-| `/emil-design-eng` | UI polish, component craft, and animation review | Need design-engineering taste checks |
-| `/familiar` | Reconstruct recent on-screen work from Familiar stills | Need recent screen/session context |
+| `/prototype-data` | Generate structured JSON data model | Define what the feature IS |
+| `/prototype-artifact` | Visualize data (flows, mockups) | Have JSON; want visuals |
+| `/verify` | Evidence pack + HTML report | After building; need proof |
+| `/postmortem` | Compound learnings into `AGENTS.md` / rules | End of session |
 
-### Deprecated / Review Before Sync
+### Productivity and design
 
-These are kept locally for continuity, but should not be installed to new agent surfaces without an explicit decision.
-
-| Command | Reason |
-|---|---|
-| `/design-an-interface` | Deprecated upstream on 2026-04-28; local workflow overlap with architecture and planning skills |
-| `/qa` | Deprecated upstream on 2026-04-28; local workflow may still be useful for conversational issue capture |
-| `/ubiquitous-language` | Deprecated upstream on 2026-04-28; local workflow overlaps with `/domain-model` |
-
-### Upstream Candidates Not Yet Imported
-
-These exist upstream and should be reviewed before the next cross-agent sync.
-
-| Skill | Upstream bucket | Initial local stance |
+| Command | Purpose | Trigger |
 |---|---|---|
-| `grill-with-docs` | engineering | Rename candidate; local `/domain-model` already covers this behavior, so decide before adding a duplicate command |
-| `diagnose` | engineering | Strong candidate; likely useful for hard bugs and regression loops |
-| `github-triage` | engineering | Candidate if GitHub issue labels become part of the shared workflow |
-| `write-a-skill` | productivity | Strong candidate because this repo will keep receiving updates |
-| `git-guardrails-claude-code` | misc | Maybe; likely Claude-specific, adapt only if useful outside Claude |
-| `migrate-to-shoehorn` | misc | Maybe; TypeScript-specific and narrow |
-| `scaffold-exercises` | misc | Maybe; useful only for course/exercise repos |
-| `setup-pre-commit` | misc | Maybe; useful but repo/project-specific |
-| `edit-article` | personal | Do not import by default; overlaps with local writing/editing workflows |
-| `obsidian-vault` | personal | Do not import by default; personal setup-specific |
+| `/caveman` | Compressed chat mode (~75% fewer tokens) | Terse replies |
+| `/design-motion-principles` | Motion and interaction audit | UI motion review |
+| `/emil-design-eng` | UI polish and craft | Design-engineering taste |
+| `/familiar` | Recent screen/session context (Familiar) | Recall on-screen work |
+
+### Upstream not imported (optional review)
+
+Skills that exist under Matt’s `skills/misc/` or `skills/personal/` are not copied here by default (e.g. `write-a-skill`, `git-guardrails-claude-code`, `obsidian-vault`). Add them only if you want them on your machines.
 
 ## Flow Map
 
 ```
 BUILD LOOP
-  /domain-model → /grill-me → [/prototype-data → /prototype-artifact] → /to-prd → /to-issues → /tdd
-                                                                                                  │
-                                                                                                  ▼
+  /grill-with-docs → [/prototype-data → /prototype-artifact] → /to-prd → /to-issues → /tdd
+                                                                                        │
+                                                                                        ▼
 VERIFICATION LOOP
-  /verify → /postmortem ──────────────────────────────────────────────────────────────────────────┘
-                                                                                                  │
-                                                                                                  ▼
+  /verify → /postmortem ───────────────────────────────────────────────────────────────┘
+                                                                                        │
+                                                                                        ▼
 FEEDBACK LOOP
-  /qa (legacy/deprecated) ──→ back to /grill-me for the fix cycle
+  /triage / /diagnose / new issues ──→ back to /grill-with-docs (or /tdd) for the fix cycle
 ```
 
-The full ASCII flow map with verification-first detail lives in [`MAP/skills-flow.md`](MAP/skills-flow.md). A detailed inventory of every skill is in [`MAP/skills-readme.md`](MAP/skills-readme.md).
+The full ASCII flow lives in [`MAP/skills-flow.md`](MAP/skills-flow.md). Inventory: [`MAP/skills-readme.md`](MAP/skills-readme.md).
 
 ## Principles
 
-- **Repo first.** This repo is canonical. Pi, Codex, Cursor, Droid, and future agent installs are deploy targets.
-- **Verification-first.** Define how to verify before building. Each work slice carries its own "How to verify" field.
-- **Compound learning.** Postmortems write back to persistent repo instructions. The repo gets smarter every session.
-- **Tracer-bullet cuts.** Every slice goes end-to-end. No horizontal layer-by-layer work.
-- **Human at the seams.** Skills classify work as HITL (human-in-the-loop) or AFK (agent can run alone). Humans approve learning proposals before they're applied.
-- **Upstream-aware, locally-owned.** Upstream changes are reviewed and adapted; they are not blindly mirrored.
+- **Repo first.** This repo is canonical. Installs are deploy targets.
+- **Verification-first.** Slices carry “How to verify”; `/verify` proves it.
+- **Compound learning.** Postmortems write back into repo instructions.
+- **Tracer-bullet cuts.** Vertical slices through all layers.
+- **Matt parity for mirrored skills.** Engineering skills listed above match Matt’s repo at the pinned commit (paths like `../grill-with-docs/` stay valid in this flat layout).
 
 ## Structure
 
 ```
 skills repo source/
-├── MAP/                              # Human reference maps
-│   ├── skills-flow.md                # ASCII flow diagrams
-│   └── skills-readme.md              # Detailed skill inventory
+├── MAP/
+│   ├── skills-flow.md
+│   └── skills-readme.md
 ├── caveman/SKILL.md
-├── design-an-interface/SKILL.md
 ├── design-motion-principles/
 │   ├── SKILL.md
 │   └── references/
-├── domain-model/SKILL.md
-│   ├── CONTEXT-FORMAT.md
-│   └── ADR-FORMAT.md
+├── diagnose/
+│   ├── SKILL.md
+│   └── scripts/hitl-loop.template.sh
 ├── emil-design-eng/SKILL.md
 ├── familiar/SKILL.md
-├── grill-me/SKILL.md
+├── grill-with-docs/
+│   ├── SKILL.md
+│   ├── CONTEXT-FORMAT.md
+│   └── ADR-FORMAT.md
 ├── improve-codebase-architecture/
 │   ├── SKILL.md
 │   ├── DEEPENING.md
@@ -144,7 +121,13 @@ skills repo source/
 ├── postmortem/SKILL.md
 ├── prototype-artifact/SKILL.md
 ├── prototype-data/SKILL.md
-├── qa/SKILL.md
+├── setup-matt-pocock-skills/
+│   ├── SKILL.md
+│   ├── domain.md
+│   ├── issue-tracker-github.md
+│   ├── issue-tracker-gitlab.md
+│   ├── issue-tracker-local.md
+│   └── triage-labels.md
 ├── tdd/
 │   ├── SKILL.md
 │   ├── deep-modules.md
@@ -154,22 +137,23 @@ skills repo source/
 │   └── tests.md
 ├── to-issues/SKILL.md
 ├── to-prd/SKILL.md
-├── ubiquitous-language/SKILL.md
+├── triage/
+│   ├── SKILL.md
+│   ├── AGENT-BRIEF.md
+│   └── OUT-OF-SCOPE.md
 ├── verify/SKILL.md
 ├── zoom-out/SKILL.md
 ├── CHANGELOG.md
-└── wip-presentation/                 # Excluded from global sync for now
+├── TODO.md
+└── wip-presentation/          # excluded from global sync for now
 ```
 
 ## Sync Policy
 
-1. Review upstream changes first, especially renamed buckets, deprecations, and new skills.
-2. Update this repo's skill files and docs.
-3. Record the decision in `CHANGELOG.md`.
-4. Sync outward to installed agent locations.
-5. Verify installed folders match this repo for all active synced skills.
-
-Deprecated and WIP folders are excluded from fresh installs unless a specific machine or agent needs them.
+1. Pull Matt changes; diff mirrored skill folders.
+2. Update this repo; record in `CHANGELOG.md`.
+3. Sync outward to `~/.codex/skills/` and `~/.cursor/skills/`.
+4. `diff -qr` repo folder vs install for each synced skill.
 
 ## License
 

@@ -2,19 +2,25 @@
 
 This repo is the canonical source for the user's cross-agent skills. Installed copies for Pi, Codex, Cursor, Droid coding agents, and future agent surfaces should be synced from here.
 
+## 2026-04-29
+
+### Matt sync (mirror engineering + productivity)
+
+- Synced from `mattpocock/skills` at commit `f71bb975bfae2dc0d31c529c7dd4a8479ecc3748`.
+- **Renamed / replaced:** `grill-me/` → `grill-with-docs/` (upstream `skills/engineering/grill-with-docs`), including `CONTEXT-FORMAT.md` and `ADR-FORMAT.md`.
+- **Updated to match Matt:** `improve-codebase-architecture/`, `tdd/`, `to-issues/`, `to-prd/`, `zoom-out/`, `caveman/`.
+- **Added:** `diagnose/` (with `scripts/hitl-loop.template.sh`), `triage/`, `setup-matt-pocock-skills/`.
+- **Removed:** `domain-model/`, `design-an-interface/`, `qa/`, `ubiquitous-language/` (deprecated or superseded upstream).
+- **Docs:** Rewrote `README.md`, `MAP/skills-readme.md`, `MAP/skills-flow.md`; adjusted `verify`, `prototype-data`, `prototype-artifact`, `postmortem` cross-references.
+
 ## 2026-04-28
 
-### Second Upstream Review
+> **Note:** The decisions in **Second Upstream Review** and **Deprecation Review** were interim. **2026-04-29** fully mirrored Matt’s active engineering skills and removed deprecated folders from this repo.
+
+### Second Upstream Review (historical)
 
 - Re-checked `mattpocock/skills` at commit `c21cf6ec93b4a25a5118a1a600ebb777e50d6c2e`.
-- Confirmed upstream changed the active domain-doc grilling skill from `domain-model` to `grill-with-docs`.
-- Kept this repo's local `/domain-model` command for now because it already carries the same workflow and is embedded in the local build loop.
-- Added `grill-with-docs` as a rename candidate rather than importing it blindly as a duplicate.
-- Confirmed upstream deprecated skills remain:
-  - `design-an-interface`
-  - `qa`
-  - `ubiquitous-language`
-- No new local skill folders were added during this pass.
+- At that time the repo kept `/domain-model` and marked `grill-with-docs` as a rename candidate; **2026-04-29** replaced that with `grill-with-docs` only.
 
 ### Upstream Review
 
@@ -39,19 +45,16 @@ This repo is the canonical source for the user's cross-agent skills. Installed c
   - Deprecated / Review Before Sync
   - Upstream Candidates Not Yet Imported
 
-### Deprecation Review
+### Deprecation Review (historical)
 
-- Marked these local skills as deprecated or review-before-sync because upstream now places them under `skills/deprecated/`:
+- These skills were later **removed** from this repo on **2026-04-29** to match Matt:
   - `design-an-interface`
   - `qa`
   - `ubiquitous-language`
-- Kept them in the repo for continuity until their local usage is reviewed.
 
 ### Upstream Candidates
 
-- Identified active upstream skills missing locally:
-  - `diagnose`
-  - `github-triage`
+- Identified active upstream skills missing locally at the time (partially resolved **2026-04-29** — `diagnose` and `triage` imported; upstream name is `triage`, not `github-triage`):
   - `write-a-skill`
   - `git-guardrails-claude-code`
   - `migrate-to-shoehorn`
@@ -61,11 +64,13 @@ This repo is the canonical source for the user's cross-agent skills. Installed c
   - `edit-article`
   - `obsidian-vault`
 
-### Known Follow-Up
+### Known Follow-Up (historical)
 
-- Decide whether to import `diagnose` and `write-a-skill` first.
-- Decide whether deprecated local skills should be moved into a `deprecated/` folder or only excluded from sync.
-- Update `MAP/skills-readme.md` after the active/deprecated split is finalized.
+- Several items below were addressed **2026-04-29** (`diagnose`, `triage`, `MAP` updates, deprecated removal). Remaining optional imports: misc/personal upstream skills.
+
+- ~~Decide whether to import `diagnose` and `write-a-skill` first.~~ (`diagnose` done; `write-a-skill` still optional.)
+- ~~Decide whether deprecated local skills should be moved into a `deprecated/` folder or only excluded from sync.~~ (Removed from repo to match Matt.)
+- ~~Update `MAP/skills-readme.md` after the active/deprecated split is finalized.~~
 - Create or update a sync script once Pi and Droid agent install paths are known.
 
 ## 2026-04-27

@@ -15,12 +15,12 @@ Define the feature through structured data before any UI exists. The JSON become
 This is step 1 of the prototyping pipeline. Step 2 is `prototype-artifact` (optional — you may just want data).
 
 ```
-prototype-data → [prototype-artifact] → grill-me → to-prd → ...
+prototype-data → [prototype-artifact] → grill-with-docs → to-prd → ...
 ```
 
 ## Where in the workflow
 
-- **After `domain-model` or `grill-me`:** You know what the domain is. Now you model the data.
+- **After `grill-with-docs`:** Domain language and decisions are aligned. Now you model the data.
 - **Before `prototype-artifact`:** The artifact skill reads this JSON to render.
 - **Standalone:** Sometimes you just want the data model. No visual needed.
 

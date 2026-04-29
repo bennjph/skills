@@ -26,7 +26,7 @@ VERIFY:                      /verify → (human reviews)
 LEARN:                                          /postmortem → (edits AGENTS.md + LEARNINGS.md)
 ```
 
-The postmortem fires once per session. It does not replace `qa` (bug capture) or `improve-codebase-architecture` (structural survey). It captures workflow and navigation learnings specific to how this repo should be worked with.
+The postmortem fires once per session. It does not replace `triage` (issue workflow), `diagnose` (hard bugs), or `improve-codebase-architecture` (structural survey). It captures workflow and navigation learnings specific to how this repo should be worked with.
 
 ## What counts as a learning
 

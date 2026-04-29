@@ -15,14 +15,14 @@ Take a structured JSON data model and render it as a visual artifact the human c
 This is step 2 of the prototyping pipeline. Step 1 is `prototype-data` (JSON creation).
 
 ```
-prototype-data → prototype-artifact → grill-me → to-prd → ...
+prototype-data → prototype-artifact → grill-with-docs → to-prd → ...
 ```
 
 ## Where in the workflow
 
 - **After `prototype-data`:** You have the JSON. Now render it.
 - **Standalone:** User already has JSON data and just wants it visualized.
-- **Before or during `grill-me`:** Visual artifact drives sharper grilling.
+- **Before or during `grill-with-docs`:** Visual artifact drives sharper grilling.
 - **Alongside `to-prd`:** PRD references the visual artifact as a specification aid.
 
 **Does not replace PRD.** Written specs (`to-prd`) remain for requirements and decisions.

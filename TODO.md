@@ -31,6 +31,12 @@
 - Created a local backup snapshot under `.skill-sync-backups/`.
 - Added `.gitignore` rules for `.DS_Store` and local sync backups.
 
+## 2026-04-29 — Matt mirror sync
+
+- Mirrored Matt engineering skills at `f71bb975bfae2dc0d31c529c7dd4a8479ecc3748`: added **`grill-with-docs`**, **`diagnose`**, **`triage`**, **`setup-matt-pocock-skills`**; removed **`grill-me`**, **`domain-model`**, **`design-an-interface`**, **`qa`**, **`ubiquitous-language`**.
+- Re-ran rsync from this repo into `~/.codex/skills/` and `~/.cursor/skills/` for every top-level skill folder that contains `SKILL.md` (excluding `wip-presentation/` and `MAP/`).
+- Push `github.com/bennjph/skills` when satisfied with the commit.
+
 ## Self-Verification Commands
 
 ```sh

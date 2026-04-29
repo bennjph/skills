@@ -23,12 +23,12 @@ After building. The code is written, tests pass, the feature exists. Now you wan
 ```
 BUILD:      ... → to-issues → tdd → ship
 VERIFY:                                    /verify → (human reviews) → /postmortem
-FEEDBACK:                                                      /qa → (back to grill-me)
+FEEDBACK:                                         /triage / tracker → back to /grill-with-docs or /tdd
 ```
 
 This skill does NOT:
 - Replace tests (that's `tdd`)
-- Capture bugs conversationally (that's `qa`)
+- Run triage or file issues by itself (that's `triage` / your tracker workflow)
 - Compound learnings into instructions (that's `postmortem`)
 
 ## Step 1: Determine task type and evidence format
